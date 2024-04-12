@@ -1,0 +1,6 @@
+* add a signature functionality
+
+* libraries needed: pdf.js, pdf-lib, html2canvas, html2pdf.js, pdfmake.js, jsPDF
+* convert html to pdf: PDFMake.js
+* pdf editor: jsPDF, psf.js, html2pdf
+* view pdf in react: react-pdf-viewer 
