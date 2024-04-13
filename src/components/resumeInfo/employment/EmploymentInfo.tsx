@@ -4,9 +4,13 @@ import { Box, Button, Container, Paper } from "@mui/material";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../store";
 import { EmploymentInfoList } from "./EmploymentInfoList";
+import Modal from "@mui/material/Modal";
+import { useState } from "react";
+import { EmploymentInfoModal } from "./EmploymentInfoModal";
 
 export const EmploymentInfo = () => {
 	const { employmentInfo } = useSelector((state: RootState) => state);
+	const [openEmploymentModal, setOpenEmploymentModal] = useState(false);
 
 	return (
 		<Container className='mt-20'>
@@ -17,9 +21,19 @@ export const EmploymentInfo = () => {
 							<h2>Employment</h2>
 						</div>
 						<div className='add-job p-2 m-2 basis-1/4'>
-							<Button variant='contained' color='success'>
+							<Button
+								variant='contained'
+								color='success'
+								onClick={() => setOpenEmploymentModal(true)}>
 								Add
 							</Button>
+							<Modal
+								open={openEmploymentModal}
+								onClose={() => setOpenEmploymentModal(false)}
+								aria-labelledby='modal-modal-title'
+								aria-describedby='modal-modal-description'>
+								<EmploymentInfoModal closeModal={setOpenEmploymentModal} />
+							</Modal>
 						</div>
 					</div>
 					<Box className='employment-info-list-details'>

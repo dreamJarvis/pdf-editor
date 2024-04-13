@@ -1,6 +1,7 @@
 /** @format */
 
 import {
+	Button,
 	FormControlLabel,
 	FormLabel,
 	MenuItem,
@@ -10,6 +11,9 @@ import {
 	TextField,
 } from "@mui/material";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { addNewEmploymentData } from "../../../services/resumeData";
+import { IEmploymentInfo } from "../../../services/types";
 
 const noticePeriod = [
 	{
@@ -38,14 +42,41 @@ const noticePeriod = [
 	},
 ];
 
-export const EmploymentInfoModal = () => {
-	const [currentEmployer, setCurrentEmployer] = useState(true);
+export const EmploymentInfoModal = ({ closeModal }: { closeModal: any }) => {
+	const [currentEmployer, setCurrentEmployer] = useState("no");
+	const [employmentType, setEmploymentType] = useState("");
+	const [companyName, setCompanyName] = useState("");
+	const [jobTitle, setJobTitle] = useState("");
+	const [joinedDate, setJoinedDate] = useState("");
+	const [resignationDate, setResignationDate] = useState("");
+	const [jobProfile, setJobProfile] = useState("");
+	const [noticePeriodVal, setNoticePeriodVal] = useState("");
+	const [skillSet, setSkillsSet] = useState("");
+
+	const dispatch = useDispatch();
+
+	const addEmploymentInfo = () => {
+		console.log("addEmploymentInfo");
+		const newEmploymentData: IEmploymentInfo = {
+			currentEmployer: currentEmployer === "no" ? false : true,
+			employmenttype: employmentType,
+			companyName: companyName,
+			jobTitle: jobTitle,
+			joiningDate: new Date(joinedDate),
+			leavingDate: new Date(resignationDate),
+			skills: skillSet.split(", "),
+			jobProfile: jobProfile,
+			noticePeriod: noticePeriodVal,
+		};
+		dispatch(addNewEmploymentData(newEmploymentData));
+		closeModal(false);
+	};
 
 	return (
 		<div className='employment-info'>
-			<form className='flex flex-row justify-center mt-20'>
+			<form className='flex flex-row justify-center mt-10'>
 				<Paper elevation={2} className='w-4/6'>
-					<div className='flex flex-wrap justify-center mt-20'>
+					<div className='flex flex-wrap justify-center py-7'>
 						<div className='employment-type w-4/6 flex flex-col items-start'>
 							<FormLabel id='employment-type-row-radio-group-label'>
 								Employment Type
@@ -53,7 +84,8 @@ export const EmploymentInfoModal = () => {
 							<RadioGroup
 								row
 								aria-labelledby='demo-row-radio-buttons-group-label'
-								name='row-radio-buttons-group'>
+								name='row-radio-buttons-group'
+								onChange={(e) => setEmploymentType(e.target.value)}>
 								<FormControlLabel
 									value='full time'
 									control={<Radio />}
@@ -71,14 +103,15 @@ export const EmploymentInfoModal = () => {
 								/>
 							</RadioGroup>
 						</div>
-						<div className='current-working w-4/6 mt-9 flex flex-col items-start'>
+						<div className='current-working w-4/6 mt-2 flex flex-col items-start'>
 							<FormLabel id='current-employer-row-radio-group-label'>
 								is this your current employment ?
 							</FormLabel>
 							<RadioGroup
 								row
+								defaultValue={currentEmployer}
 								onChange={(e) => {
-									setCurrentEmployer(e.target.value === "yes");
+									setCurrentEmployer(e.target.value);
 								}}
 								aria-labelledby='current-employer-group-label'
 								name='row-radio-buttons-group'>
@@ -87,12 +120,14 @@ export const EmploymentInfoModal = () => {
 							</RadioGroup>
 						</div>
 					</div>
-					<div className='employment-info flex flex-wrap justify-center mt-9 mb-14'>
-						<div className='company-details m-2 w-4/6'>
+					<div className='employment-info flex flex-wrap justify-center mb-2'>
+						<div className='company-details w-4/6'>
 							<TextField
 								id='company-name'
 								label='Company Name'
 								variant='outlined'
+								value={companyName}
+								onChange={(e) => setCompanyName(e.target.value)}
 								fullWidth
 								required
 							/>
@@ -101,6 +136,8 @@ export const EmploymentInfoModal = () => {
 							<TextField
 								id='jobTitle'
 								label='Job Title'
+								value={jobTitle}
+								onChange={(e) => setJobTitle(e.target.value)}
 								fullWidth
 								required
 								variant='outlined'
@@ -113,16 +150,18 @@ export const EmploymentInfoModal = () => {
 								</label>
 								<input
 									type='date'
+									onChange={(e) => setJoinedDate(e.target.value)}
 									className='h-12 bg-slate-200 p-4 rounded-md'
 								/>
 							</div>
-							{currentEmployer && (
+							{currentEmployer === "no" && (
 								<div className='leaving-date basis-2/4'>
 									<label htmlFor='joiningDate' className='basis-2/4'>
 										left :{" "}
 									</label>
 									<input
 										type='date'
+										onChange={(e) => setResignationDate(e.target.value)}
 										className='h-12 bg-slate-200 p-4 rounded-md'
 									/>
 								</div>
@@ -132,6 +171,8 @@ export const EmploymentInfoModal = () => {
 							<TextField
 								id='jobProfile'
 								label='job profile'
+								value={jobProfile}
+								onChange={(e) => setJobProfile(e.target.value)}
 								multiline
 								fullWidth
 								rows={4}
@@ -143,6 +184,7 @@ export const EmploymentInfoModal = () => {
 								id='noticePeriod'
 								select
 								label='Notice Period'
+								onChange={(e) => setNoticePeriodVal(e.target.value)}
 								defaultValue=''
 								fullWidth>
 								{noticePeriod.map((option) => (
@@ -156,11 +198,27 @@ export const EmploymentInfoModal = () => {
 							<TextField
 								id='skills'
 								label='skills'
+								onChange={(e) => setSkillsSet(e.target.value)}
 								fullWidth
 								helperText='seperate skills with a ,'
 								placeholder='React.Js, Javascript...'
 							/>
 						</div>
+					</div>
+					<div className='employment-info flex flex-wrap justify-center mb-14'>
+						<Button
+							variant='contained'
+							color='primary'
+							onClick={addEmploymentInfo}
+							sx={{ marginRight: "2rem" }}>
+							Add
+						</Button>
+						<Button
+							variant='contained'
+							color='success'
+							onClick={() => closeModal(false)}>
+							Close
+						</Button>
 					</div>
 				</Paper>
 			</form>

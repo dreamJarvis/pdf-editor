@@ -32,11 +32,11 @@ export const EmploymentInfoView = ({
 	return (
 		<div className='employment-info w-5/6'>
 			<Box className='flex flex-col items-start bg-slate-200 p-2 mt-2 mb-3 shadow-md'>
-				<div className='employment-info-job-title mt-2 flex flex-row'>
-					<div className='text-center text-gray-600 text-pretty text-lg'>
+				<div className='employment-info-job-title mt-2 flex flex-row w-[100%]'>
+					<div className='text-center text-gray-600 text-pretty text-lg basis-5/6 w-[100%] flex flex-col items-start'>
 						<h1>{jobTitle}</h1>
 					</div>
-					<div className='ml-72 rounded-md bg-slate-100 w-12'>
+					<div className='flex flex-col w-[100%] items-end basis-1/6'>
 						<Button startIcon={<EditIcon />} color='success' />
 					</div>
 				</div>

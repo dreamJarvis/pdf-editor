@@ -22,7 +22,7 @@ export interface IContactSite {
 export interface IEmploymentInfo {
 	currentEmployer: Boolean;
 	employmenttype: String;
-	totalExperience: String;
+	totalExperience?: String;
 	companyName: String;
 	jobTitle: String;
 	joiningDate: Date;
