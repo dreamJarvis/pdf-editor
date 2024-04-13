@@ -1,32 +1,16 @@
 /** @format */
 
 import { createSlice } from "@reduxjs/toolkit";
+import {
+	tempEmploymentData,
+	tempEducationData,
+	tempPersoanlDetails,
+} from "./mock-data";
 
 const initialState = {
-	personalDetails: {
-		about: null,
-		firstName: null,
-		lastName: null,
-		dob: null,
-		address1: null,
-		address2: null,
-		address3: null,
-		workPhoneNumber: null,
-		personalPhoneNumber: null,
-		additionalInfo: {
-			linkedIn: null,
-			portfolio: null,
-			github: null,
-		},
-	},
-	education: {
-		highestQualification: null,
-		cgpa: null,
-		university: null,
-		admissionYear: null,
-		passingYear: null,
-	},
-	employmentInfo: {},
+	personalDetails: tempPersoanlDetails,
+	education: [tempEducationData],
+	employmentInfo: [tempEmploymentData],
 };
 
 export const resumeDataSlice = createSlice({
