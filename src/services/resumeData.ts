@@ -5,12 +5,13 @@ import {
 	tempEmploymentData,
 	tempEducationData,
 	tempPersoanlDetails,
+	tempEmploymentData2,
 } from "./mock-data";
 
 const initialState = {
 	personalDetails: tempPersoanlDetails,
 	education: [tempEducationData],
-	employmentInfo: [tempEmploymentData],
+	employmentInfo: [tempEmploymentData, tempEmploymentData2],
 };
 
 export const resumeDataSlice = createSlice({

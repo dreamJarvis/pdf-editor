@@ -13,7 +13,7 @@ export const tempEmploymentData: IEmploymentInfo = {
 	employmenttype: "Full-time",
 	totalExperience: "19",
 	companyName: "velsera",
-	jobTitle: "associate software engineer",
+	jobTitle: "Associate software engineer",
 	joiningDate: new Date(2022, 3, 9),
 	leavingDate: new Date(2023, 9, 9),
 	skills: [
@@ -25,7 +25,27 @@ export const tempEmploymentData: IEmploymentInfo = {
 		"MaterialUI",
 	],
 	jobProfile:
-		"* As one of the first engineers who got to work on the company's new product, I helped in designing and developing the base framework for the front end using React & Material UI. * Applied Redux for better state memory management and to reduce props drilling. * Applied Redux RTK for API cache for the project, to reduce the number of API calls and server costs.",
+		"* As one of the first engineers who got to work on the company's new product, I helped in designing and developing the base framework for the front end using React & Material UI. \n* Applied Redux for better state memory management and to reduce props drilling. \n* Applied Redux RTK for API cache for the project, to reduce the number of API calls and server costs.",
+	noticePeriod: "2 months",
+};
+
+export const tempEmploymentData2: IEmploymentInfo = {
+	currentEmployer: true,
+	employmenttype: "Full-time",
+	totalExperience: "8",
+	companyName: "GlobalLogic",
+	jobTitle: "Associate software engineer",
+	joiningDate: new Date(2021, 8, 5),
+	leavingDate: new Date(2022, 3, 11),
+	skills: [
+		"Angular(10+)",
+		"Javascript",
+		"Typescript",
+		"HTML5/CSS3",
+		"MaterialUI",
+	],
+	jobProfile:
+		"Received industrial training on java backend and microservices. - Learned Spring Boot as back-end technology.\nWorked with Spring Boot, Spring Security, Spring Data JPA, and Hibernate.\nUsed JUnit, and Mockito For Test Driven Development.\nWorked with Postman, Apache Tomcat, H2 Databases, Mockito, Eureka Server, and Hystrix\n  Worked as a Angular(10+) developer",
 	noticePeriod: "2 months",
 };
 
