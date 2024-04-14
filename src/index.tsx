@@ -6,7 +6,6 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { PersonalInfo } from "./components/resumeInfo/PersonalInfo";
 import { EducationalInfo } from "./components/resumeInfo/education/EducationalInfo";
 import { EmploymentInfo } from "./components/resumeInfo/employment/EmploymentInfo";
-import { ProjectsInfo } from "./components/resumeInfo/ProjectsInfo";
 import { SkillsInfo } from "./components/resumeInfo/SkillsInfo";
 import { ViewResume } from "./components/resumeInfo/ViewResume";
 import { PageNotFound } from "./Errors/PageNotFound";
@@ -14,6 +13,7 @@ import { Provider } from "react-redux";
 import { store } from "./store";
 import App from "./App";
 import "./index.css";
+import { ProjectInfo } from "./components/resumeInfo/project/ProjectInfo";
 
 const root = ReactDOM.createRoot(
 	document.getElementById("root") as HTMLElement
@@ -39,7 +39,7 @@ const appRouter = createBrowserRouter([
 			},
 			{
 				path: "/projects",
-				element: <ProjectsInfo />,
+				element: <ProjectInfo />,
 			},
 			{
 				path: "/skills",

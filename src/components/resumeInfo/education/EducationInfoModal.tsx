@@ -96,6 +96,7 @@ export const EducationInfoModal = ({
 								row
 								aria-labelledby='demo-row-radio-buttons-group-label'
 								name='row-radio-buttons-group'
+								defaultValue={courseCompleted}
 								onChange={(e) => setCourseCompleted(e.target.value)}>
 								<FormControlLabel value='yes' control={<Radio />} label='yes' />
 								<FormControlLabel value='no`' control={<Radio />} label='no' />

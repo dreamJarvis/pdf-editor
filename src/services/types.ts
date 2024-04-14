@@ -55,3 +55,17 @@ export interface IPersonalInfo {
 	contactNumbers: IContactNumberInfo;
 	additionalInfo: IContactSite;
 }
+
+export interface IProjects {
+	id: string;
+	projectTitle: string;
+	projectAssociation: string;
+	client: string;
+	projectStatus: string;
+	started: Date;
+	completed: Date;
+	projectDetails: string;
+	skillsUsed: Array<string>;
+	liveLink?: string;
+	repositoryLink: string;
+}

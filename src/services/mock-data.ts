@@ -6,6 +6,7 @@ import {
 	IEducationInfo,
 	IEmploymentInfo,
 	IPersonalInfo,
+	IProjects,
 } from "./types";
 
 export const tempEmploymentData: IEmploymentInfo = {
@@ -90,4 +91,34 @@ export const tempPersoanlDetails: IPersonalInfo = {
 	address: tempAddressData,
 	contactNumbers: tempContactData,
 	additionalInfo: tempContactSites,
+};
+
+export const tempProjetData: IProjects = {
+	id: new Date(4, 3, 2021).getDate().toString(),
+	projectTitle: "personal website",
+	projectAssociation: "self-project",
+	client: "self",
+	projectStatus: "finished",
+	started: new Date(2021, 1, 2),
+	completed: new Date(2021, 4, 4),
+	projectDetails:
+		"This is my personal website, with extensive information about my work and projects for any future employers",
+	skillsUsed: ["ReactJs", "Redux", "Typescript", "MaterialUI", "HTML5", "CSS3"],
+	liveLink: " https://dreamjarvis.github.io/portfolio-react/",
+	repositoryLink: "https://github.com/dreamJarvis/portfolio-react",
+};
+
+export const tempProjetData2: IProjects = {
+	id: new Date(4, 6, 2021).getDate().toString(),
+	projectTitle: "expense tracker",
+	projectAssociation: "self-project",
+	client: "self",
+	projectStatus: "finished",
+	started: new Date(2021, 6, 4),
+	completed: new Date(2021, 11, 4),
+	projectDetails:
+		"Keeps track of the total expenses of the product enters in the list.Stores the total costs in the local storage of the browser.",
+	skillsUsed: ["ReactJs", "Redux", "Javscript", "MaterialUI", "HTML5", "CSS3"],
+	liveLink: "https://dreamjarvis.github.io/ExpenseTracker/",
+	repositoryLink: "https://github.com/dreamJarvis/ExpenseTracker",
 };
