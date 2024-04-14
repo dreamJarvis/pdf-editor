@@ -9,9 +9,6 @@ import { Header } from "./components/Header";
 // import UploadPDF from "./components/UploadPDF";
 import { ResumeBuilder } from "./pages/ResumeBuilder";
 
-/* 
-	TODO: implment router & redux
-*/
 function App() {
 	return (
 		<div className='App'>

@@ -42,6 +42,9 @@ const noticePeriod = [
 	},
 ];
 
+/* 
+	TODO: use useReducers, instead of multiple useState() for tha same objects
+*/
 export const EmploymentInfoModal = ({ closeModal }: { closeModal: any }) => {
 	const [currentEmployer, setCurrentEmployer] = useState("no");
 	const [employmentType, setEmploymentType] = useState("");
@@ -56,8 +59,8 @@ export const EmploymentInfoModal = ({ closeModal }: { closeModal: any }) => {
 	const dispatch = useDispatch();
 
 	const addEmploymentInfo = () => {
-		console.log("addEmploymentInfo");
 		const newEmploymentData: IEmploymentInfo = {
+			id: new Date().getMilliseconds(),
 			currentEmployer: currentEmployer === "no" ? false : true,
 			employmenttype: employmentType,
 			companyName: companyName,
@@ -176,7 +179,7 @@ export const EmploymentInfoModal = ({ closeModal }: { closeModal: any }) => {
 								multiline
 								fullWidth
 								rows={4}
-								defaultValue='type here...'
+								placeholder='type here...'
 							/>
 						</div>
 						<div className='m-2 w-4/6'>

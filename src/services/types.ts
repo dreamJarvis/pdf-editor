@@ -20,6 +20,7 @@ export interface IContactSite {
 }
 
 export interface IEmploymentInfo {
+	id: number;
 	currentEmployer: Boolean;
 	employmenttype: String;
 	totalExperience?: String;
@@ -33,6 +34,7 @@ export interface IEmploymentInfo {
 }
 
 export interface IEducationInfo {
+	id: number;
 	education: string;
 	university: string;
 	course: string;
@@ -40,7 +42,8 @@ export interface IEducationInfo {
 	courseType: string;
 	startingYear: Date;
 	graduationYear: Date;
-	cgpa: string;
+	gradingSystem: string;
+	marks: string;
 }
 
 export interface IPersonalInfo {

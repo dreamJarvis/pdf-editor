@@ -18,13 +18,17 @@ export const resumeDataSlice = createSlice({
 	name: "resumeData",
 	initialState,
 	reducers: {
-		addResumeData: (state, action) => {},
 		addNewEmploymentData: (state, action) => {
 			const updateEmploymentData = [...state.employmentInfo, action.payload];
 			state.employmentInfo = updateEmploymentData;
 		},
+		addNewEducationData: (state, action) => {
+			const updateEducationData = [...state.education, action.payload];
+			state.education = updateEducationData;
+		},
 	},
 });
 
-export const { addResumeData, addNewEmploymentData } = resumeDataSlice.actions;
+export const { addNewEducationData, addNewEmploymentData } =
+	resumeDataSlice.actions;
 export default resumeDataSlice.reducer;

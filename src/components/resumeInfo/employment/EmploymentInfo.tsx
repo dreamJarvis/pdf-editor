@@ -7,9 +7,12 @@ import { EmploymentInfoList } from "./EmploymentInfoList";
 import Modal from "@mui/material/Modal";
 import { useState } from "react";
 import { EmploymentInfoModal } from "./EmploymentInfoModal";
+import AddIcon from "@mui/icons-material/Add";
 
 export const EmploymentInfo = () => {
-	const { employmentInfo } = useSelector((state: RootState) => state);
+	const employmentInfo = useSelector(
+		(state: RootState) => state.employmentInfo
+	);
 	const [openEmploymentModal, setOpenEmploymentModal] = useState(false);
 
 	return (
@@ -17,21 +20,22 @@ export const EmploymentInfo = () => {
 			<Box className='job-details flex flex-row justify-center'>
 				<Paper elevation={2} className='w-5/6'>
 					<div className='employment-info-list-header flex flex-row'>
-						<div className='employment-header basis-3/4 flex items-center m-4'>
-							<h2>Employment</h2>
+						<div className='employment-header basis-3/4 flex  m-4'>
+							<h2 className='font-sans text-2xl p-2 text-slate-500 font-semibold'>
+								Employment
+							</h2>
 						</div>
-						<div className='add-job p-2 m-2 basis-1/4'>
+						<div className='add-job p-4 m-2 basis-1/4'>
 							<Button
 								variant='contained'
 								color='success'
-								onClick={() => setOpenEmploymentModal(true)}>
-								Add
-							</Button>
+								startIcon={<AddIcon fontSize='large' />}
+								onClick={() => setOpenEmploymentModal(true)}></Button>
 							<Modal
 								open={openEmploymentModal}
 								onClose={() => setOpenEmploymentModal(false)}
-								aria-labelledby='modal-modal-title'
-								aria-describedby='modal-modal-description'>
+								aria-labelledby='add-employment-detail-modal'
+								aria-describedby='add-employment-description'>
 								<EmploymentInfoModal closeModal={setOpenEmploymentModal} />
 							</Modal>
 						</div>

@@ -9,6 +9,7 @@ import {
 } from "./types";
 
 export const tempEmploymentData: IEmploymentInfo = {
+	id: new Date().getMilliseconds(),
 	currentEmployer: true,
 	employmenttype: "Full-time",
 	totalExperience: "19",
@@ -30,6 +31,7 @@ export const tempEmploymentData: IEmploymentInfo = {
 };
 
 export const tempEmploymentData2: IEmploymentInfo = {
+	id: new Date().getMilliseconds(),
 	currentEmployer: true,
 	employmenttype: "Full-time",
 	totalExperience: "8",
@@ -50,6 +52,7 @@ export const tempEmploymentData2: IEmploymentInfo = {
 };
 
 export const tempEducationData: IEducationInfo = {
+	id: new Date().getMilliseconds(),
 	education: "Graduation",
 	university: "Chandigarh University",
 	course: "Bachelors of engineering",
@@ -57,7 +60,8 @@ export const tempEducationData: IEducationInfo = {
 	courseType: "full-time",
 	startingYear: new Date(2017, 4, 10),
 	graduationYear: new Date(2021, 4, 10),
-	cgpa: "7.1",
+	gradingSystem: "Scale 10 Grading System",
+	marks: "7.1",
 };
 
 export const tempAddressData: IAddressInfo = {
