@@ -128,16 +128,16 @@ export const tempSkillData: ISkill = {
 	id: new Date().getMilliseconds().toString(),
 	skill: "ReactJs",
 	softwareVersion: ">= 16.0",
-	lastUsed: new Date().getTime().toString(),
-	usedFrom: "2020",
-	usedTill: "2024",
+	lastUsed: new Date(2024, 5, 2),
+	usedFrom: new Date(2020, 1, 2),
+	usedTill: new Date(2024, 5, 2),
 };
 
 export const tempSkillData2: ISkill = {
 	id: new Date().getMilliseconds().toString(),
 	skill: "Redux",
 	softwareVersion: ">= 10.0",
-	lastUsed: new Date().getTime().toString(),
-	usedFrom: "2020",
-	usedTill: new Date().getTime().toString(),
+	lastUsed: new Date(2024, 5, 2),
+	usedFrom: new Date(2020, 1, 2),
+	usedTill: new Date(2024, 5, 2),
 };

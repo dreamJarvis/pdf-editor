@@ -74,7 +74,7 @@ export interface ISkill {
 	id: string;
 	skill: string;
 	softwareVersion: string;
-	lastUsed: string;
-	usedFrom: string;
-	usedTill: string;
+	lastUsed: Date;
+	usedFrom: Date;
+	usedTill: Date;
 }
