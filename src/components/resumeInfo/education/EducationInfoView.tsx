@@ -10,8 +10,6 @@ export const EducationInfoView = ({
 	educationalInfo: IEducationInfo;
 }) => {
 	const {
-		id,
-		education,
 		university,
 		course,
 		specialization,
@@ -21,8 +19,6 @@ export const EducationInfoView = ({
 		gradingSystem,
 		marks,
 	} = educationalInfo;
-
-	console.log("educationalInfo : ", educationalInfo);
 
 	return (
 		<div className='employment-info w-5/6'>

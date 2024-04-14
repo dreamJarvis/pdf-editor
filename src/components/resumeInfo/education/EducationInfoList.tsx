@@ -12,8 +12,8 @@ export const EducationInfoList = ({
 	return (
 		<div className='flex flex-col items-center justify-center mt-4 p-2 mb-10'>
 			{educationalInfoList.length > 0 &&
-				educationalInfoList.map((info) => (
-					<EducationInfoView educationalInfo={info} />
+				educationalInfoList.map((info, id) => (
+					<EducationInfoView key={id} educationalInfo={info} />
 				))}
 		</div>
 	);

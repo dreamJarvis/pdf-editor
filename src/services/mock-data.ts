@@ -98,7 +98,7 @@ export const tempProjetData: IProjects = {
 	projectTitle: "personal website",
 	projectAssociation: "self-project",
 	client: "self",
-	projectStatus: "finished",
+	projectStatus: "completed",
 	started: new Date(2021, 1, 2),
 	completed: new Date(2021, 4, 4),
 	projectDetails:
@@ -113,7 +113,7 @@ export const tempProjetData2: IProjects = {
 	projectTitle: "expense tracker",
 	projectAssociation: "self-project",
 	client: "self",
-	projectStatus: "finished",
+	projectStatus: "completed",
 	started: new Date(2021, 6, 4),
 	completed: new Date(2021, 11, 4),
 	projectDetails:
