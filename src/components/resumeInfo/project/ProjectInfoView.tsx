@@ -1,16 +1,15 @@
 /** @format */
 
 import { Box, Button } from "@mui/material";
-import { IProjects } from "../../../services/types";
+import { IProjectInfo } from "../../../services/types";
 import EditIcon from "@mui/icons-material/Edit";
 
 export const ProjectInfoView = ({
 	projectInfo,
 }: {
-	projectInfo: IProjects;
+	projectInfo: IProjectInfo;
 }) => {
 	const {
-		id,
 		projectTitle,
 		projectAssociation,
 		client,

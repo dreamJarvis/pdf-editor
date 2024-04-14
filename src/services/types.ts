@@ -56,7 +56,7 @@ export interface IPersonalInfo {
 	additionalInfo: IContactSite;
 }
 
-export interface IProjects {
+export interface IProjectInfo {
 	id: string;
 	projectTitle: string;
 	projectAssociation: string;
@@ -68,4 +68,13 @@ export interface IProjects {
 	skillsUsed: Array<string>;
 	liveLink?: string;
 	repositoryLink: string;
+}
+
+export interface ISkill {
+	id: string;
+	skill: string;
+	softwareVersion: string;
+	lastUsed: string;
+	usedFrom: string;
+	usedTill: string;
 }

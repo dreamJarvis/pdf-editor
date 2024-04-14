@@ -1,13 +1,13 @@
 /** @format */
 
 import { Box } from "@mui/material";
-import { IProjects } from "../../../services/types";
+import { IProjectInfo } from "../../../services/types";
 import { ProjectInfoView } from "./ProjectInfoView";
 
 export const ProjectInfoList = ({
 	projectsList,
 }: {
-	projectsList: Array<IProjects>;
+	projectsList: Array<IProjectInfo>;
 }) => {
 	return (
 		<Box className='flex flex-col items-center justify-center mt-4 p-2 mb-10'>

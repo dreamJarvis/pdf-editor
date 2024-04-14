@@ -6,7 +6,8 @@ import {
 	IEducationInfo,
 	IEmploymentInfo,
 	IPersonalInfo,
-	IProjects,
+	IProjectInfo,
+	ISkill,
 } from "./types";
 
 export const tempEmploymentData: IEmploymentInfo = {
@@ -93,7 +94,7 @@ export const tempPersoanlDetails: IPersonalInfo = {
 	additionalInfo: tempContactSites,
 };
 
-export const tempProjetData: IProjects = {
+export const tempProjetData: IProjectInfo = {
 	id: new Date(4, 3, 2021).getDate().toString(),
 	projectTitle: "personal website",
 	projectAssociation: "self-project",
@@ -108,7 +109,7 @@ export const tempProjetData: IProjects = {
 	repositoryLink: "https://github.com/dreamJarvis/portfolio-react",
 };
 
-export const tempProjetData2: IProjects = {
+export const tempProjetData2: IProjectInfo = {
 	id: new Date(4, 6, 2021).getDate().toString(),
 	projectTitle: "expense tracker",
 	projectAssociation: "self-project",
@@ -121,4 +122,22 @@ export const tempProjetData2: IProjects = {
 	skillsUsed: ["ReactJs", "Redux", "Javscript", "MaterialUI", "HTML5", "CSS3"],
 	liveLink: "https://dreamjarvis.github.io/ExpenseTracker/",
 	repositoryLink: "https://github.com/dreamJarvis/ExpenseTracker",
+};
+
+export const tempSkillData: ISkill = {
+	id: new Date().getMilliseconds().toString(),
+	skill: "ReactJs",
+	softwareVersion: ">= 16.0",
+	lastUsed: new Date().getTime().toString(),
+	usedFrom: "2020",
+	usedTill: "2024",
+};
+
+export const tempSkillData2: ISkill = {
+	id: new Date().getMilliseconds().toString(),
+	skill: "Redux",
+	softwareVersion: ">= 10.0",
+	lastUsed: new Date().getTime().toString(),
+	usedFrom: "2020",
+	usedTill: new Date().getTime().toString(),
 };

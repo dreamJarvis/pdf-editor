@@ -15,7 +15,7 @@ import { useState } from "react";
 import { RootState } from "../../../store";
 import { useDispatch, useSelector } from "react-redux";
 import { addNewProjectData } from "../../../services/resumeData";
-import { IProjects } from "../../../services/types";
+import { IProjectInfo } from "../../../services/types";
 
 export const ProjectInfoModal = ({ closeModal }: { closeModal: Function }) => {
 	const education = useSelector((state: RootState) => state.education);
@@ -51,7 +51,7 @@ export const ProjectInfoModal = ({ closeModal }: { closeModal: Function }) => {
 	};
 
 	const addProjectInfo = () => {
-		const newProjectData: IProjects = {
+		const newProjectData: IProjectInfo = {
 			id: new Date().getMilliseconds().toString(),
 			projectTitle: projectTitle,
 			projectAssociation: projectTag,
