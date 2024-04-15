@@ -14,6 +14,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { addNewEmploymentData } from "../../../services/resumeData";
 import { IEmploymentInfo } from "../../../services/types";
+import { getTotalExperienceInMonths } from "../../utils/common";
 
 const noticePeriod = [
 	{
@@ -64,6 +65,10 @@ export const EmploymentInfoModal = ({ closeModal }: { closeModal: any }) => {
 			currentEmployer: currentEmployer === "no" ? false : true,
 			employmenttype: employmentType,
 			companyName: companyName,
+			totalExperience: getTotalExperienceInMonths(
+				new Date(joinedDate),
+				new Date(resignationDate)
+			),
 			jobTitle: jobTitle,
 			joiningDate: new Date(joinedDate),
 			leavingDate: new Date(resignationDate),

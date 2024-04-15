@@ -3,7 +3,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { PersonalInfo } from "./components/resumeInfo/PersonalInfo";
+import { PersonalInfo } from "./components/resumeInfo/personal/PersonalInfo";
 import { EducationalInfo } from "./components/resumeInfo/education/EducationalInfo";
 import { EmploymentInfo } from "./components/resumeInfo/employment/EmploymentInfo";
 import { ViewResume } from "./components/resumeInfo/ViewResume";

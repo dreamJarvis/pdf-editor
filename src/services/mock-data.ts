@@ -14,7 +14,7 @@ export const tempEmploymentData: IEmploymentInfo = {
 	id: new Date().getMilliseconds(),
 	currentEmployer: true,
 	employmenttype: "Full-time",
-	totalExperience: "19",
+	totalExperience: 19,
 	companyName: "velsera",
 	jobTitle: "Associate software engineer",
 	joiningDate: new Date(2022, 3, 9),
@@ -36,7 +36,7 @@ export const tempEmploymentData2: IEmploymentInfo = {
 	id: new Date().getMilliseconds(),
 	currentEmployer: true,
 	employmenttype: "Full-time",
-	totalExperience: "8",
+	totalExperience: 8,
 	companyName: "GlobalLogic",
 	jobTitle: "Associate software engineer",
 	joiningDate: new Date(2021, 8, 5),
@@ -89,9 +89,12 @@ export const tempPersoanlDetails: IPersonalInfo = {
 	firstName: "tarun",
 	lastName: "jha",
 	dob: new Date(1997, 10, 21),
+	email: "tarunjha3799@gmail.com",
+	availableToJoin: "15 Days or less",
 	address: tempAddressData,
 	contactNumbers: tempContactData,
 	additionalInfo: tempContactSites,
+	image: "src/assets/images/passport-photo.png",
 };
 
 export const tempProjetData: IProjectInfo = {

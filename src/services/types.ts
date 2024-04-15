@@ -23,7 +23,7 @@ export interface IEmploymentInfo {
 	id: number;
 	currentEmployer: Boolean;
 	employmenttype: String;
-	totalExperience?: String;
+	totalExperience: number;
 	companyName: String;
 	jobTitle: String;
 	joiningDate: Date;
@@ -50,8 +50,11 @@ export interface IPersonalInfo {
 	about: string;
 	firstName: string;
 	lastName: string;
+	image: string;
 	dob: Date;
+	availableToJoin: string;
 	address: IAddressInfo;
+	email: string;
 	contactNumbers: IContactNumberInfo;
 	additionalInfo: IContactSite;
 }
