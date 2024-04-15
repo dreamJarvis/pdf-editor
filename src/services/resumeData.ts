@@ -40,6 +40,13 @@ export const resumeDataSlice = createSlice({
 			const updateSkillData = [...state.skills, action.payload];
 			state.skills = updateSkillData;
 		},
+		addPersonalData: (state, action) => {
+			const updatePersonalData = {
+				...state.personalDetails,
+				...action.payload,
+			};
+			state.personalDetails = updatePersonalData;
+		},
 	},
 });
 
@@ -48,5 +55,6 @@ export const {
 	addNewEmploymentData,
 	addNewProjectData,
 	addNewSkillData,
+	addPersonalData,
 } = resumeDataSlice.actions;
 export default resumeDataSlice.reducer;

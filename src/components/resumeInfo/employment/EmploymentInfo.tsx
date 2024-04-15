@@ -33,6 +33,7 @@ export const EmploymentInfo = () => {
 								onClick={() => setOpenEmploymentModal(true)}></Button>
 							<Modal
 								open={openEmploymentModal}
+								style={{ overflow: "auto", paddingBottom: "10px" }}
 								onClose={() => setOpenEmploymentModal(false)}
 								aria-labelledby='add-employment-detail-modal'
 								aria-describedby='add-employment-description'>

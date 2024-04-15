@@ -36,9 +36,9 @@ export const PersonalInfoView = ({
 			<Box className='flex flex-col items-start bg-slate-200 p-2 mt-2 mb-3 shadow-md justify-center'>
 				<div className='employment-info-job-title mt-2 flex flex-col w-[100%]'>
 					<div className='name flex flex-col text-center text-gray-600 text-pretty text-lg w-[100%] items-center justify-start'>
-						<div className='w-fit h-fit'>
+						{/* <div className='w-fit h-fit'>
 							<img src={image} alt='user' />
-						</div>
+						</div> */}
 						<div className='flex flex-row'>
 							<div>
 								<h1>

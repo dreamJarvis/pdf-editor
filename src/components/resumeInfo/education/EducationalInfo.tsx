@@ -32,6 +32,7 @@ export const EducationalInfo = () => {
 								onClick={() => setOpenEducationModal(true)}></Button>
 							<Modal
 								open={openEducationModal}
+								style={{ overflow: "auto", paddingBottom: "10px" }}
 								onClose={() => setOpenEducationModal(false)}
 								aria-labelledby='add-employment-detail-modal'
 								aria-describedby='add-employment-description'>

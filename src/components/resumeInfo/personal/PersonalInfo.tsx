@@ -42,6 +42,7 @@ export const PersonalInfo = () => {
 							)}
 							<Modal
 								open={openPersonalInfoModal}
+								style={{ overflow: "auto", paddingBottom: "10px" }}
 								onClose={() => setOpenPersonalInfoModal(false)}
 								aria-labelledby='add-employment-detail-modal'
 								aria-describedby='add-employment-description'>

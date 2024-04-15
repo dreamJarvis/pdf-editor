@@ -88,13 +88,13 @@ export const tempPersoanlDetails: IPersonalInfo = {
 		"I have 2.5+ years of experience as a front-end developer in creating and implementing many front-end/full-stack web applications.",
 	firstName: "tarun",
 	lastName: "jha",
-	dob: new Date(1997, 10, 21),
+	dob: new Date(1997, 11, 22),
 	email: "tarunjha3799@gmail.com",
 	availableToJoin: "15 Days or less",
 	address: tempAddressData,
 	contactNumbers: tempContactData,
 	additionalInfo: tempContactSites,
-	image: "src/assets/images/passport-photo.png",
+	image: "",
 };
 
 export const tempProjetData: IProjectInfo = {
