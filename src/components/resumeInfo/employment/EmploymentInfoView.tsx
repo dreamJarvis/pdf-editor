@@ -4,6 +4,9 @@ import { Box, Button } from "@mui/material";
 import { IEmploymentInfo } from "../../../services/types";
 import EditIcon from "@mui/icons-material/Edit";
 
+/* 
+	TODO: edit option
+*/
 export const EmploymentInfoView = ({
 	employmentInfo,
 }: {

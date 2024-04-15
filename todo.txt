@@ -1,5 +1,16 @@
 * add a signature functionality
 
+phase 1:
+* create a full-stack resume UI
+
+phase 2:
+* for creating dynamic layout: react-grid-layout
+
+phase 3
+* fully dynamic resume layout 
+
+
+: Uitl 
 * libraries needed: pdf.js, pdf-lib, html2canvas, html2pdf.js, pdfmake.js, jsPDF
 * convert html to pdf: PDFMake.js
 * pdf editor: jsPDF, psf.js, html2pdf
