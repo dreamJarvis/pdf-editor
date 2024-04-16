@@ -7,7 +7,7 @@ import { EducationInfoModal } from "./EducationInfoModal";
 import { useState } from "react";
 import { EducationInfoList } from "./EducationInfoList";
 import AddIcon from "@mui/icons-material/Add";
-import { getInitialEducationData } from "../../utils/common";
+import { getInitializedEducationData } from "../../utils/common";
 import { ACTION_TYPE } from "../../utils/constants";
 
 export const EducationalInfo = () => {
@@ -41,7 +41,7 @@ export const EducationalInfo = () => {
 								aria-describedby='add-employment-description'>
 								<EducationInfoModal
 									action={ACTION_TYPE.add}
-									educationInfo={getInitialEducationData(null)}
+									educationInfo={getInitializedEducationData(null)}
 									setOpenEducationModal={setOpenEducationModal}
 								/>
 							</Modal>

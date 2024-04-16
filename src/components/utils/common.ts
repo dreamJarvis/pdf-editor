@@ -52,7 +52,7 @@ export const getInitializedPersonalData = (
 	};
 };
 
-export const getInitialEducationData = (
+export const getInitializedEducationData = (
 	educationInfo: IEducationInfo | null
 ): IEducationInfo => {
 	return {

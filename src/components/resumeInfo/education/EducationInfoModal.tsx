@@ -17,7 +17,7 @@ import {
 	addNewEducationData,
 	updateEducationDate,
 } from "../../../services/resumeData";
-import { getInitialEducationData } from "../../utils/common";
+import { getInitializedEducationData } from "../../utils/common";
 import { educationInfoReducer } from "../store/educationStore";
 import { EDUCATION_INFO_ACTIONS } from "../store/resumeActions";
 import { EDUCATION_LEVEL, GRADING_SYSTEM } from "../../utils/constants";
@@ -33,7 +33,7 @@ export const EducationInfoModal = ({
 }) => {
 	const [educationData, dispatchEducationData] = useReducer(
 		educationInfoReducer,
-		getInitialEducationData(educationInfo)
+		getInitializedEducationData(educationInfo)
 	);
 	const dispatch = useDispatch();
 

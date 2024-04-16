@@ -4,7 +4,7 @@ import { IEducationInfo } from "../../../services/types";
 import { Box, Button, Modal } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
 import { EducationInfoModal } from "./EducationInfoModal";
-import { getInitialEducationData } from "../../utils/common";
+import { getInitializedEducationData } from "../../utils/common";
 import { ACTION_TYPE } from "../../utils/constants";
 
 export const EducationInfoView = ({
@@ -48,7 +48,7 @@ export const EducationInfoView = ({
 							aria-describedby='add-employment-description'>
 							<EducationInfoModal
 								action={ACTION_TYPE.edit}
-								educationInfo={getInitialEducationData(educationalInfo)}
+								educationInfo={getInitializedEducationData(educationalInfo)}
 								setOpenEducationModal={setOpenEducationModal}
 							/>
 						</Modal>
