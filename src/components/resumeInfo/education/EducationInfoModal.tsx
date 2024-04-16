@@ -10,76 +10,36 @@ import {
 	RadioGroup,
 	TextField,
 } from "@mui/material";
-import { useState } from "react";
+import { useReducer } from "react";
 import { useDispatch } from "react-redux";
 import { IEducationInfo } from "../../../services/types";
-import { addNewEducationData } from "../../../services/resumeData";
+import {
+	addNewEducationData,
+	updateEducationDate,
+} from "../../../services/resumeData";
+import { getInitialEducationData } from "../../utils/common";
+import { educationInfoReducer } from "../store/educationStore";
+import { EDUCATION_INFO_ACTIONS } from "../store/resumeActions";
+import { EDUCATION_LEVEL, GRADING_SYSTEM } from "../../utils/constants";
 
-const educationLevels = [
-	{
-		value: "Doctorate/PhD",
-		label: "Doctorate/PhD",
-	},
-	{
-		value: "Masters/Post-Graduation",
-		label: "Masters/Post-Graduation",
-	},
-	{
-		value: "Graduation",
-		label: "Graduation",
-	},
-];
-
-const gradingSystems = [
-	{
-		value: "Scale 10 Grading System",
-		label: "Scale 10 Grading System",
-	},
-	{
-		value: "Scale 4 Grading System",
-		label: "Scale 4 Grading System",
-	},
-	{
-		value: "% Marks of 100 Maximum",
-		label: "% Marks of 100 Maximum",
-	},
-];
-
-/* 
-	TODO: use useReducers, instead of multiple useState() for tha same objects
-*/
 export const EducationInfoModal = ({
+	action,
 	setOpenEducationModal,
+	educationInfo,
 }: {
+	action: string;
 	setOpenEducationModal: Function;
+	educationInfo: IEducationInfo | null;
 }) => {
-	const [degreeLevel, setDegreeLevel] = useState("");
-	const [university, setUniversity] = useState("");
-	const [course, setCourse] = useState("");
-	const [specialization, setSpecialization] = useState("");
-	const [courseType, setCourseType] = useState("");
-	const [startingYear, setStartingYear] = useState("");
-	const [endingYear, setEndingYear] = useState("");
-	const [courseCompleted, setCourseCompleted] = useState("no");
-	const [gradingsystem, setGradingsystem] = useState("no");
-	const [marks, setMarks] = useState("no");
+	const [educationData, dispatchEducationData] = useReducer(
+		educationInfoReducer,
+		getInitialEducationData(educationInfo)
+	);
 	const dispatch = useDispatch();
 
 	const addEducationInfo = () => {
-		const newEducationDate: IEducationInfo = {
-			id: new Date().getMilliseconds(),
-			education: degreeLevel,
-			university: university,
-			course: course,
-			specialization: specialization,
-			courseType: courseType,
-			startingYear: new Date(startingYear),
-			graduationYear: new Date(endingYear),
-			gradingSystem: gradingsystem,
-			marks: marks,
-		};
-
-		dispatch(addNewEducationData(newEducationDate));
+		if (action === "EDIT") dispatch(updateEducationDate(educationData));
+		else if (action === "ADD") dispatch(addNewEducationData(educationData));
 		setOpenEducationModal(false);
 	};
 
@@ -96,8 +56,15 @@ export const EducationInfoModal = ({
 								row
 								aria-labelledby='demo-row-radio-buttons-group-label'
 								name='row-radio-buttons-group'
-								defaultValue={courseCompleted}
-								onChange={(e) => setCourseCompleted(e.target.value)}>
+								defaultValue={educationData?.completed}
+								onChange={(e) => {
+									dispatchEducationData({
+										type: EDUCATION_INFO_ACTIONS.ADD_ACTIONS,
+										payload: {
+											completed: e.target.value,
+										},
+									});
+								}}>
 								<FormControlLabel value='yes' control={<Radio />} label='yes' />
 								<FormControlLabel value='no`' control={<Radio />} label='no' />
 							</RadioGroup>
@@ -108,10 +75,18 @@ export const EducationInfoModal = ({
 									id='Education'
 									select
 									label='Education'
-									onChange={(e) => setDegreeLevel(e.target.value)}
+									value={educationData?.education}
+									onChange={(e) => {
+										dispatchEducationData({
+											type: EDUCATION_INFO_ACTIONS.ADD_ACTIONS,
+											payload: {
+												education: e.target.value,
+											},
+										});
+									}}
 									defaultValue=''
 									fullWidth>
-									{educationLevels.map((option) => (
+									{EDUCATION_LEVEL.map((option) => (
 										<MenuItem key={option.value} value={option.value}>
 											{option.label}
 										</MenuItem>
@@ -122,15 +97,32 @@ export const EducationInfoModal = ({
 								<TextField
 									id='University/Institute'
 									label='Institute'
-									onChange={(e) => setUniversity(e.target.value)}
+									value={educationData?.university}
+									onChange={(e) => {
+										dispatchEducationData({
+											type: EDUCATION_INFO_ACTIONS.ADD_ACTIONS,
+											payload: {
+												university: e.target.value,
+											},
+										});
+									}}
 									defaultValue=''
-									fullWidth></TextField>
+									fullWidth
+								/>
 							</div>
 							<div className='m-2 w-full'>
 								<TextField
 									id='course'
 									label='course'
-									onChange={(e) => setCourse(e.target.value)}
+									value={educationData?.course}
+									onChange={(e) => {
+										dispatchEducationData({
+											type: EDUCATION_INFO_ACTIONS.ADD_ACTIONS,
+											payload: {
+												course: e.target.value,
+											},
+										});
+									}}
 									defaultValue=''
 									fullWidth></TextField>
 							</div>
@@ -138,9 +130,18 @@ export const EducationInfoModal = ({
 								<TextField
 									id='specialization'
 									label='specialization'
-									onChange={(e) => setSpecialization(e.target.value)}
+									value={educationData?.specialization}
+									onChange={(e) => {
+										dispatchEducationData({
+											type: EDUCATION_INFO_ACTIONS.ADD_ACTIONS,
+											payload: {
+												specialization: e.target.value,
+											},
+										});
+									}}
 									defaultValue=''
-									fullWidth></TextField>
+									fullWidth
+								/>
 							</div>
 						</div>
 						<div className='employment-type w-4/6 flex flex-col items-start mt-6'>
@@ -151,7 +152,15 @@ export const EducationInfoModal = ({
 								row
 								aria-labelledby='demo-row-radio-buttons-group-label'
 								name='row-radio-buttons-group'
-								onChange={(e) => setCourseType(e.target.value)}>
+								value={educationData?.courseType}
+								onChange={(e) => {
+									dispatchEducationData({
+										type: EDUCATION_INFO_ACTIONS.ADD_ACTIONS,
+										payload: {
+											courseType: e.target.value,
+										},
+									});
+								}}>
 								<FormControlLabel
 									value='full time'
 									control={<Radio />}
@@ -176,34 +185,58 @@ export const EducationInfoModal = ({
 								</label>
 								<input
 									type='date'
-									onChange={(e) => setStartingYear(e.target.value)}
+									value={educationData?.startingYear.toDateString()}
+									onChange={(e) => {
+										dispatchEducationData({
+											type: EDUCATION_INFO_ACTIONS.ADD_ACTIONS,
+											payload: {
+												startingYear: new Date(e.target.value),
+											},
+										});
+									}}
 									className='h-12 bg-slate-200 p-4 rounded-md'
 								/>
 							</div>
-							{courseCompleted === "yes" && (
+							{educationData?.completed === "yes" && (
 								<div className='leaving-date basis-2/4'>
 									<label htmlFor='joiningDate' className='basis-2/4'>
 										completed :{" "}
 									</label>
 									<input
 										type='date'
-										onChange={(e) => setEndingYear(e.target.value)}
+										value={educationData?.graduationYear.toDateString()}
+										onChange={(e) => {
+											dispatchEducationData({
+												type: EDUCATION_INFO_ACTIONS.ADD_ACTIONS,
+												payload: {
+													graduationYear: new Date(e.target.value),
+												},
+											});
+										}}
 										className='h-12 bg-slate-200 p-4 rounded-md'
 									/>
 								</div>
 							)}
 						</div>
-						{courseCompleted === "yes" && (
+						{educationData?.completed === "yes" && (
 							<div className='employment-type w-4/6 flex flex-col items-center mt-6 mb-4'>
 								<div className='m-2 w-full'>
 									<TextField
 										id='gradingSystem'
 										select
 										label='Grading System'
-										onChange={(e) => setGradingsystem(e.target.value)}
+										value={educationData?.gradingSystem}
+										onChange={(e) => {
+											dispatchEducationData({
+												type: EDUCATION_INFO_ACTIONS.ADD_ACTIONS,
+												payload: {
+													gradingSystem: e.target.value,
+												},
+											});
+										}}
 										defaultValue=''
 										fullWidth>
-										{gradingSystems.map((option) => (
+										{GRADING_SYSTEM.map((option) => (
 											<MenuItem key={option.value} value={option.value}>
 												{option.label}
 											</MenuItem>
@@ -214,9 +247,18 @@ export const EducationInfoModal = ({
 									<TextField
 										id='marks'
 										label='marks'
-										onChange={(e) => setMarks(e.target.value)}
+										value={educationData?.marks}
+										onChange={(e) => {
+											dispatchEducationData({
+												type: EDUCATION_INFO_ACTIONS.ADD_ACTIONS,
+												payload: {
+													marks: e.target.value,
+												},
+											});
+										}}
 										defaultValue=''
-										fullWidth></TextField>
+										fullWidth
+									/>
 								</div>
 							</div>
 						)}

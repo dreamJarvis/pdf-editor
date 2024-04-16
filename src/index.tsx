@@ -26,7 +26,7 @@ const appRouter = createBrowserRouter([
 		errorElement: <PageNotFound />,
 		children: [
 			{
-				path: "/personal",
+				path: "/",
 				element: <PersonalInfo />,
 			},
 			{

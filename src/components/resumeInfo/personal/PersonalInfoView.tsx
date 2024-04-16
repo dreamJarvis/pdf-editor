@@ -24,7 +24,6 @@ export const PersonalInfoView = ({
 		address,
 		contactNumbers,
 		additionalInfo,
-		image,
 	} = personalInfo;
 
 	const { city, state } = address;

@@ -11,7 +11,7 @@ export const ResumeInfoNav = () => {
 					<li
 						className='personal-info m-10 p-4 bg-slate-300 drop-shadow-lg rounded-md'
 						data-info-type='personal'>
-						<Link to='/personal'>Personal</Link>
+						<Link to='/'>Personal</Link>
 					</li>
 					<li
 						className='education-info m-10 p-4 bg-slate-300 drop-shadow-lg rounded-md'

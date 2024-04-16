@@ -7,6 +7,8 @@ import { EducationInfoModal } from "./EducationInfoModal";
 import { useState } from "react";
 import { EducationInfoList } from "./EducationInfoList";
 import AddIcon from "@mui/icons-material/Add";
+import { getInitialEducationData } from "../../utils/common";
+import { ACTION_TYPE } from "../../utils/constants";
 
 export const EducationalInfo = () => {
 	const educationalInfoList = useSelector(
@@ -29,7 +31,8 @@ export const EducationalInfo = () => {
 								variant='contained'
 								color='success'
 								startIcon={<AddIcon />}
-								onClick={() => setOpenEducationModal(true)}></Button>
+								onClick={() => setOpenEducationModal(true)}
+							/>
 							<Modal
 								open={openEducationModal}
 								style={{ overflow: "auto", paddingBottom: "10px" }}
@@ -37,6 +40,8 @@ export const EducationalInfo = () => {
 								aria-labelledby='add-employment-detail-modal'
 								aria-describedby='add-employment-description'>
 								<EducationInfoModal
+									action={ACTION_TYPE.add}
+									educationInfo={getInitialEducationData(null)}
 									setOpenEducationModal={setOpenEducationModal}
 								/>
 							</Modal>

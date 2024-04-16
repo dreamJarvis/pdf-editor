@@ -1,6 +1,6 @@
 /** @format */
 
-import { IPersonalInfo } from "../../services/types";
+import { IEducationInfo, IPersonalInfo } from "../../services/types";
 
 export const getTotalExperienceInMonths = (
 	leavingDate: Date,
@@ -49,5 +49,23 @@ export const getInitializedPersonalData = (
 			portfolio: personalInfo.additionalInfo.portfolio ?? "",
 			github: personalInfo.additionalInfo.github ?? "",
 		},
+	};
+};
+
+export const getInitialEducationData = (
+	educationInfo: IEducationInfo | null
+): IEducationInfo => {
+	return {
+		id: educationInfo?.id ?? new Date().getMilliseconds(),
+		education: educationInfo?.education ?? "",
+		university: educationInfo?.university ?? "",
+		course: educationInfo?.course ?? "",
+		specialization: educationInfo?.specialization ?? "",
+		courseType: educationInfo?.courseType ?? "",
+		startingYear: educationInfo?.startingYear ?? new Date(),
+		graduationYear: educationInfo?.graduationYear ?? new Date(),
+		gradingSystem: educationInfo?.gradingSystem ?? "no",
+		marks: educationInfo?.marks ?? "no",
+		completed: educationInfo?.completed ?? "no",
 	};
 };

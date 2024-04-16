@@ -1,8 +1,11 @@
 /** @format */
-import React from "react";
+import React, { useState } from "react";
 import { IEducationInfo } from "../../../services/types";
-import { Box, Button } from "@mui/material";
+import { Box, Button, Modal } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
+import { EducationInfoModal } from "./EducationInfoModal";
+import { getInitialEducationData } from "../../utils/common";
+import { ACTION_TYPE } from "../../utils/constants";
 
 export const EducationInfoView = ({
 	educationalInfo,
@@ -20,6 +23,8 @@ export const EducationInfoView = ({
 		marks,
 	} = educationalInfo;
 
+	const [openEducationModal, setOpenEducationModal] = useState(false);
+
 	return (
 		<div className='employment-info w-5/6'>
 			<Box className='flex flex-col items-start bg-slate-200 p-2 mt-2 mb-3 shadow-md'>
@@ -30,7 +35,23 @@ export const EducationInfoView = ({
 						</h1>
 					</div>
 					<div className='flex flex-col w-[100%] items-end basis-1/6'>
-						<Button startIcon={<EditIcon />} color='success' />
+						<Button
+							startIcon={<EditIcon />}
+							color='success'
+							onClick={() => setOpenEducationModal(true)}
+						/>
+						<Modal
+							open={openEducationModal}
+							style={{ overflow: "auto", paddingBottom: "10px" }}
+							onClose={() => setOpenEducationModal(false)}
+							aria-labelledby='add-employment-detail-modal'
+							aria-describedby='add-employment-description'>
+							<EducationInfoModal
+								action={ACTION_TYPE.edit}
+								educationInfo={getInitialEducationData(educationalInfo)}
+								setOpenEducationModal={setOpenEducationModal}
+							/>
+						</Modal>
 					</div>
 				</div>
 				<div className='employment-info-company-name mt-1'>

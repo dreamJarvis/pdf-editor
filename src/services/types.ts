@@ -44,6 +44,7 @@ export interface IEducationInfo {
 	graduationYear: Date;
 	gradingSystem: string;
 	marks: string;
+	completed: string;
 }
 
 export interface IPersonalInfo {

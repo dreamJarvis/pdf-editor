@@ -64,6 +64,7 @@ export const tempEducationData: IEducationInfo = {
 	graduationYear: new Date(2021, 4, 10),
 	gradingSystem: "Scale 10 Grading System",
 	marks: "7.1",
+	completed: "yes",
 };
 
 export const tempAddressData: IAddressInfo = {

@@ -5,37 +5,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../../store";
 import { addPersonalData } from "../../../services/resumeData";
 import { useReducer } from "react";
-import { IPersonalInfo } from "../../../services/types";
 import { getInitializedPersonalData } from "../../utils/common";
-
-export const ACTIONS = {
-	ADD_PERSONAL: "add-personal-info",
-	ADD_ADDRESS: "add-address-info",
-	ADD_CONTACT: "add-contact-details",
-	ADD_ADDITONAL: "add-additional-info",
-	UPDATE: "add-personal-info",
-};
-
-const reducer = (state: IPersonalInfo, action: { type: any; payload: {} }) => {
-	switch (action.type) {
-		case ACTIONS.ADD_PERSONAL:
-			return { ...state, ...action.payload };
-		case ACTIONS.ADD_ADDRESS:
-			return { ...state, address: { ...state.address, ...action.payload } };
-		case ACTIONS.ADD_CONTACT:
-			return {
-				...state,
-				contactNumbers: { ...state.contactNumbers, ...action.payload },
-			};
-		case ACTIONS.ADD_ADDITONAL:
-			return {
-				...state,
-				additionalInfo: { ...state.additionalInfo, ...action.payload },
-			};
-		default:
-			return state;
-	}
-};
+import { PERSONAL_INFO_ACTIONS } from "../store/resumeActions";
+import { personalInfoReducer } from "../store/personalStore";
 
 export const PersonalInfoModal = ({
 	setOpenPersonalInfoModal,
@@ -45,7 +17,7 @@ export const PersonalInfoModal = ({
 	const personalInfo = useSelector((state: RootState) => state.personalDetails);
 	const dispatch = useDispatch();
 	const [personalData, dispatchPersonalData] = useReducer(
-		reducer,
+		personalInfoReducer,
 		getInitializedPersonalData(personalInfo)
 	);
 
@@ -81,7 +53,7 @@ export const PersonalInfoModal = ({
 									value={personalData.firstName}
 									onChange={(e) => {
 										dispatchPersonalData({
-											type: ACTIONS.ADD_PERSONAL,
+											type: PERSONAL_INFO_ACTIONS.ADD_PERSONAL,
 											payload: { firstName: e.target.value },
 										});
 									}}
@@ -95,7 +67,7 @@ export const PersonalInfoModal = ({
 									value={personalData.lastName}
 									onChange={(e) => {
 										dispatchPersonalData({
-											type: ACTIONS.ADD_PERSONAL,
+											type: PERSONAL_INFO_ACTIONS.ADD_PERSONAL,
 											payload: { lastName: e.target.value },
 										});
 									}}
@@ -109,7 +81,7 @@ export const PersonalInfoModal = ({
 									required
 									onChange={(e) => {
 										dispatchPersonalData({
-											type: ACTIONS.ADD_PERSONAL,
+											type: PERSONAL_INFO_ACTIONS.ADD_PERSONAL,
 											payload: { dob: new Date(e.target.value) },
 										});
 									}}
@@ -126,7 +98,7 @@ export const PersonalInfoModal = ({
 									label='address'
 									onChange={(e) => {
 										dispatchPersonalData({
-											type: ACTIONS.ADD_ADDRESS,
+											type: PERSONAL_INFO_ACTIONS.ADD_ADDRESS,
 											payload: { street: e.target.value },
 										});
 									}}
@@ -141,7 +113,7 @@ export const PersonalInfoModal = ({
 									label='city'
 									onChange={(e) => {
 										dispatchPersonalData({
-											type: ACTIONS.ADD_ADDRESS,
+											type: PERSONAL_INFO_ACTIONS.ADD_ADDRESS,
 											payload: { city: e.target.value },
 										});
 									}}
@@ -157,7 +129,7 @@ export const PersonalInfoModal = ({
 									required
 									onChange={(e) => {
 										dispatchPersonalData({
-											type: ACTIONS.ADD_ADDRESS,
+											type: PERSONAL_INFO_ACTIONS.ADD_ADDRESS,
 											payload: { state: e.target.value },
 										});
 									}}
@@ -174,7 +146,7 @@ export const PersonalInfoModal = ({
 									variant='outlined'
 									onChange={(e) => {
 										dispatchPersonalData({
-											type: ACTIONS.ADD_ADDRESS,
+											type: PERSONAL_INFO_ACTIONS.ADD_ADDRESS,
 											payload: { pincode: e.target.value },
 										});
 									}}
@@ -188,7 +160,7 @@ export const PersonalInfoModal = ({
 									type='email'
 									onChange={(e) => {
 										dispatchPersonalData({
-											type: ACTIONS.ADD_PERSONAL,
+											type: PERSONAL_INFO_ACTIONS.ADD_PERSONAL,
 											payload: { email: e.target.value },
 										});
 									}}
@@ -204,7 +176,7 @@ export const PersonalInfoModal = ({
 									type='text'
 									onChange={(e) => {
 										dispatchPersonalData({
-											type: ACTIONS.ADD_PERSONAL,
+											type: PERSONAL_INFO_ACTIONS.ADD_PERSONAL,
 											payload: { availableToJoin: e.target.value },
 										});
 									}}
@@ -222,7 +194,7 @@ export const PersonalInfoModal = ({
 									type='tel'
 									onChange={(e) => {
 										dispatchPersonalData({
-											type: ACTIONS.ADD_CONTACT,
+											type: PERSONAL_INFO_ACTIONS.ADD_CONTACT,
 											payload: { contactPhoneNumber: e.target.value },
 										});
 									}}
@@ -238,7 +210,7 @@ export const PersonalInfoModal = ({
 									type='tel'
 									onChange={(e) => {
 										dispatchPersonalData({
-											type: ACTIONS.ADD_CONTACT,
+											type: PERSONAL_INFO_ACTIONS.ADD_CONTACT,
 											payload: { workPhoneNumber: e.target.value },
 										});
 									}}
@@ -255,7 +227,7 @@ export const PersonalInfoModal = ({
 									value={personalData.contactNumbers.homeNumber}
 									onChange={(e) => {
 										dispatchPersonalData({
-											type: ACTIONS.ADD_CONTACT,
+											type: PERSONAL_INFO_ACTIONS.ADD_CONTACT,
 											payload: { homeNumber: e.target.value },
 										});
 									}}
@@ -272,7 +244,7 @@ export const PersonalInfoModal = ({
 									value={personalData.additionalInfo.linkedIn}
 									onChange={(e) => {
 										dispatchPersonalData({
-											type: ACTIONS.ADD_ADDITONAL,
+											type: PERSONAL_INFO_ACTIONS.ADD_ADDITONAL,
 											payload: { linkedIn: e.target.value },
 										});
 									}}
@@ -288,7 +260,7 @@ export const PersonalInfoModal = ({
 									value={personalData.additionalInfo.portfolio}
 									onChange={(e) => {
 										dispatchPersonalData({
-											type: ACTIONS.ADD_ADDITONAL,
+											type: PERSONAL_INFO_ACTIONS.ADD_ADDITONAL,
 											payload: { portfolio: e.target.value },
 										});
 									}}
@@ -303,7 +275,7 @@ export const PersonalInfoModal = ({
 									value={personalData.additionalInfo.github}
 									onChange={(e) => {
 										dispatchPersonalData({
-											type: ACTIONS.ADD_ADDITONAL,
+											type: PERSONAL_INFO_ACTIONS.ADD_ADDITONAL,
 											payload: { github: e.target.value },
 										});
 									}}
@@ -321,7 +293,7 @@ export const PersonalInfoModal = ({
 									value={personalData.about}
 									onChange={(e) => {
 										dispatchPersonalData({
-											type: ACTIONS.ADD_PERSONAL,
+											type: PERSONAL_INFO_ACTIONS.ADD_PERSONAL,
 											payload: { about: e.target.value },
 										});
 									}}
