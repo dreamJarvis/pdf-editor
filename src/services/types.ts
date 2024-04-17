@@ -26,8 +26,8 @@ export interface IEmploymentInfo {
 	totalExperience: number;
 	companyName: String;
 	jobTitle: String;
-	joiningDate: Date;
-	leavingDate?: Date;
+	joiningDate: string;
+	leavingDate?: string;
 	skills: string[];
 	jobProfile: string;
 	noticePeriod: string;
@@ -40,8 +40,8 @@ export interface IEducationInfo {
 	course: string;
 	specialization: string;
 	courseType: string;
-	startingYear: Date;
-	graduationYear: Date;
+	startingYear: string;
+	graduationYear: string;
 	gradingSystem: string;
 	marks: string;
 	completed: string;
@@ -52,7 +52,7 @@ export interface IPersonalInfo {
 	firstName: string;
 	lastName: string;
 	image: string;
-	dob: Date;
+	dob: string;
 	availableToJoin: string;
 	address: IAddressInfo;
 	email: string;
@@ -66,8 +66,8 @@ export interface IProjectInfo {
 	projectAssociation: string;
 	client: string;
 	projectStatus: string;
-	started: Date;
-	completed: Date;
+	started: string;
+	completed: string;
 	projectDetails: string;
 	skillsUsed: Array<string>;
 	liveLink?: string;
@@ -78,7 +78,7 @@ export interface ISkill {
 	id: string;
 	skill: string;
 	softwareVersion: string;
-	lastUsed: Date;
-	usedFrom: Date;
-	usedTill: Date;
+	lastUsed: string;
+	usedFrom: string;
+	usedTill: string;
 }

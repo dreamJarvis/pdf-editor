@@ -25,16 +25,20 @@ export const EmploymentInfoView = ({
 		employmenttype,
 	} = employmentInfo;
 
+	const leavingDateYYMMDD = new Date(leavingDate ?? "");
+	const joiningDateYYMMDD = new Date(joiningDate);
+
 	const [openEmploymentModal, setOpenEmploymentModal] = useState(false);
 
 	const totalDurationOfMonths =
-		(leavingDate ? leavingDate.getMonth() : 0) + (12 - joiningDate?.getMonth());
+		(leavingDateYYMMDD ? leavingDateYYMMDD.getMonth() : 0) +
+		(12 - joiningDateYYMMDD?.getMonth());
 	const totalDurationYears = Math.floor(totalDurationOfMonths / 12);
 
 	const totalEmploymentDurationMonths = Math.floor(totalDurationOfMonths % 12);
 	const totalEmploymentDurationYears =
-		(leavingDate ? leavingDate.getFullYear() : 0) -
-		joiningDate?.getFullYear() -
+		(leavingDateYYMMDD ? leavingDateYYMMDD.getFullYear() : 0) -
+		joiningDateYYMMDD?.getFullYear() -
 		1 +
 		totalDurationYears;
 
@@ -71,7 +75,8 @@ export const EmploymentInfoView = ({
 				<div className='employment-info-duration mt-1'>
 					<small>{employmenttype}</small> |{" "}
 					<small>
-						{joiningDate.toDateString()} to {leavingDate?.toDateString()} ({" "}
+						{joiningDateYYMMDD.toDateString()} to{" "}
+						{leavingDateYYMMDD?.toDateString()} ({" "}
 						{`${totalEmploymentDurationYears} years ${totalEmploymentDurationMonths} months`}{" "}
 						)
 					</small>

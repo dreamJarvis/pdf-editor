@@ -44,8 +44,8 @@ export const EmploymentInfoModal = ({
 		const newEmploymentData = {
 			...employmentData,
 			totalExperience: getTotalExperienceInMonths(
-				employmentData?.joiningDate,
-				employmentData?.leavingDate ?? new Date()
+				new Date(employmentData?.joiningDate),
+				new Date(employmentData?.leavingDate ?? "")
 			),
 		};
 		if (action === "ADD") {
@@ -69,7 +69,8 @@ export const EmploymentInfoModal = ({
 								row
 								aria-labelledby='demo-row-radio-buttons-group-label'
 								name='row-radio-buttons-group'
-								value={employmentData?.employmenttype}
+								defaultValue={employmentData?.employmenttype}
+								// value={employmentData?.employmenttype}
 								onChange={(e) => {
 									dispatchEmploymentData({
 										type: EMPLOYMENT_INFO_ACTIONS.ADD_ACTIONS,
@@ -102,7 +103,7 @@ export const EmploymentInfoModal = ({
 							<RadioGroup
 								row
 								defaultValue={employmentData?.currentEmployer ? "yes" : "no"}
-								value={employmentData?.currentEmployer}
+								// value={employmentData?.currentEmployer}
 								onChange={(e) => {
 									dispatchEmploymentData({
 										type: EMPLOYMENT_INFO_ACTIONS.ADD_ACTIONS,
@@ -162,12 +163,12 @@ export const EmploymentInfoModal = ({
 								</label>
 								<input
 									type='date'
-									value={employmentData?.joiningDate.toISOString()}
+									value={employmentData?.joiningDate}
 									onChange={(e) => {
 										dispatchEmploymentData({
 											type: EMPLOYMENT_INFO_ACTIONS.ADD_ACTIONS,
 											payload: {
-												joiningDate: new Date(e.target.value),
+												joiningDate: e.target.value,
 											},
 										});
 									}}
@@ -181,12 +182,12 @@ export const EmploymentInfoModal = ({
 									</label>
 									<input
 										type='date'
-										value={employmentData?.leavingDate?.toISOString()}
+										value={employmentData?.leavingDate}
 										onChange={(e) => {
 											dispatchEmploymentData({
 												type: EMPLOYMENT_INFO_ACTIONS.ADD_ACTIONS,
 												payload: {
-													leavingDate: new Date(e.target.value),
+													leavingDate: e.target.value,
 												},
 											});
 										}}

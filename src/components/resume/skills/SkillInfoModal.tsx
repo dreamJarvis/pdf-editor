@@ -6,6 +6,9 @@ import { ISkill } from "../../../services/types";
 import { useDispatch } from "react-redux";
 import { addNewSkillData } from "../../../services/resumeData";
 
+/* 
+	TODO: convert Date type to string type
+*/
 export const SkillInfoModal = ({
 	setOpenSkillModal,
 }: {
@@ -22,9 +25,9 @@ export const SkillInfoModal = ({
 			id: new Date().getMilliseconds().toString(),
 			skill: skillName,
 			softwareVersion: softwareVersion,
-			lastUsed: new Date(ended),
-			usedFrom: new Date(started),
-			usedTill: new Date(ended),
+			lastUsed: ended,
+			usedFrom: started,
+			usedTill: ended,
 		};
 		dispatch(addNewSkillData(newSkillData));
 		setOpenSkillModal(false);

@@ -152,7 +152,7 @@ export const EducationInfoModal = ({
 								row
 								aria-labelledby='demo-row-radio-buttons-group-label'
 								name='row-radio-buttons-group'
-								value={educationData?.courseType}
+								defaultValue={educationData?.courseType}
 								onChange={(e) => {
 									dispatchEducationData({
 										type: EDUCATION_INFO_ACTIONS.ADD_ACTIONS,
@@ -185,12 +185,12 @@ export const EducationInfoModal = ({
 								</label>
 								<input
 									type='date'
-									value={educationData?.startingYear.toDateString()}
+									value={educationData?.startingYear}
 									onChange={(e) => {
 										dispatchEducationData({
 											type: EDUCATION_INFO_ACTIONS.ADD_ACTIONS,
 											payload: {
-												startingYear: new Date(e.target.value),
+												startingYear: e.target.value,
 											},
 										});
 									}}
@@ -204,12 +204,12 @@ export const EducationInfoModal = ({
 									</label>
 									<input
 										type='date'
-										value={educationData?.graduationYear.toDateString()}
+										value={educationData?.graduationYear}
 										onChange={(e) => {
 											dispatchEducationData({
 												type: EDUCATION_INFO_ACTIONS.ADD_ACTIONS,
 												payload: {
-													graduationYear: new Date(e.target.value),
+													graduationYear: e.target.value,
 												},
 											});
 										}}

@@ -61,7 +61,8 @@ export const ProjectInfoView = ({
 				</div>
 				<div className='employment-info-duration mt-1'>
 					<small>
-						{started.getFullYear()} to {completed?.getFullYear()}
+						{new Date(started).getFullYear()} to{" "}
+						{new Date(completed).getFullYear()}
 					</small>{" "}
 					| <small>{projectAssociation}</small>
 				</div>

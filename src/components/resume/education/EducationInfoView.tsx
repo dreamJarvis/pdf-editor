@@ -24,6 +24,8 @@ export const EducationInfoView = ({
 	} = educationalInfo;
 
 	const [openEducationModal, setOpenEducationModal] = useState(false);
+	const startingYearYYMMDD = new Date(startingYear);
+	const graduationYearYYMMDD = new Date(graduationYear);
 
 	return (
 		<div className='employment-info w-5/6'>
@@ -59,7 +61,8 @@ export const EducationInfoView = ({
 				</div>
 				<div className='employment-info-duration mt-1'>
 					<small>
-						{startingYear.getFullYear()} to {graduationYear?.getFullYear()}
+						{startingYearYYMMDD.getFullYear()} to{" "}
+						{graduationYearYYMMDD?.getFullYear()}
 					</small>{" "}
 					| <small>{courseType}</small>
 				</div>

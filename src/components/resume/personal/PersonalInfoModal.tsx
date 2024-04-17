@@ -82,7 +82,7 @@ export const PersonalInfoModal = ({
 									onChange={(e) => {
 										dispatchPersonalData({
 											type: PERSONAL_INFO_ACTIONS.ADD_PERSONAL,
-											payload: { dob: new Date(e.target.value) },
+											payload: { dob: e.target.value },
 										});
 									}}
 									type='date'

@@ -10,7 +10,7 @@ import {
 	RadioGroup,
 	TextField,
 } from "@mui/material";
-import { useReducer } from "react";
+import { useReducer, useState } from "react";
 import { useDispatch } from "react-redux";
 import {
 	addNewProjectData,
@@ -23,7 +23,11 @@ import {
 } from "../../utils/common";
 import { projectInfoReducer } from "../store/projectStore";
 import { PROJECT_INFO_ACTIONS } from "../store/resumeActions";
-
+import { DateField } from "@mui/x-date-pickers/DateField";
+import dayjs from "dayjs";
+import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 /* 
 	TODO: add None/self option to tag project option
 */
@@ -47,6 +51,9 @@ export const ProjectInfoModal = ({
 		if (actionType === "EDIT") dispatch(updateProjectData(projectData));
 		closeModal(false);
 	};
+
+	const [joiningDate, setJoinedDate] = useState("2024-04-21");
+	const [leavingDate, setLeavingDate] = useState(new Date());
 
 	return (
 		<div>
@@ -145,11 +152,11 @@ export const ProjectInfoModal = ({
 									</label>
 									<input
 										type='date'
-										value={projectData?.started.toLocaleDateString()}
+										value={projectData?.started}
 										onChange={(e) => {
 											dispatchProjectlData({
 												type: PROJECT_INFO_ACTIONS.ADD_ACTIONS,
-												payload: { started: new Date(e.target.value) },
+												payload: { started: e.target.value },
 											});
 										}}
 										className='h-12 bg-slate-200 p-4 rounded-md'
@@ -162,11 +169,11 @@ export const ProjectInfoModal = ({
 										</label>
 										<input
 											type='date'
-											value={projectData?.completed.toLocaleDateString()}
+											value={projectData?.completed}
 											onChange={(e) => {
 												dispatchProjectlData({
 													type: PROJECT_INFO_ACTIONS.ADD_ACTIONS,
-													payload: { completed: new Date(e.target.value) },
+													payload: { completed: e.target.value },
 												});
 											}}
 											className='h-12 bg-slate-200 p-4 rounded-md'

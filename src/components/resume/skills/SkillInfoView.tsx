@@ -7,10 +7,14 @@ import EditIcon from "@mui/icons-material/Edit";
 export const SkillInfoView = ({ skillInfo }: { skillInfo: ISkill }) => {
 	const { skill, softwareVersion, lastUsed, usedFrom, usedTill } = skillInfo;
 
-	const totalExperienceMonths = usedTill.getMonth() + usedFrom.getMonth();
+	const lastUsedYYMMDD = new Date(lastUsed);
+	const usedTillYYMMDD = new Date(usedTill);
+	const usedFromYYMMDD = new Date(usedFrom);
+	const totalExperienceMonths =
+		usedTillYYMMDD.getMonth() + usedFromYYMMDD.getMonth();
 	const totalExperienceYears =
-		usedTill.getFullYear() -
-		usedFrom.getFullYear() +
+		usedTillYYMMDD.getFullYear() -
+		usedFromYYMMDD.getFullYear() +
 		Math.floor(totalExperienceMonths / 12);
 
 	return (
@@ -25,7 +29,7 @@ export const SkillInfoView = ({ skillInfo }: { skillInfo: ISkill }) => {
 							<h1 className='text-base'>{softwareVersion}</h1>
 						</div>
 						<div className='last-used'>
-							<h1 className='text-base'>{lastUsed.getFullYear()}</h1>
+							<h1 className='text-base'>{lastUsedYYMMDD.getFullYear()}</h1>
 						</div>
 						<div className='experience'>
 							<h1 className='text-base'>

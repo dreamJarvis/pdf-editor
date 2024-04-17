@@ -68,8 +68,8 @@ export const getInitializedEducationData = (
 		course: educationInfo?.course ?? "",
 		specialization: educationInfo?.specialization ?? "",
 		courseType: educationInfo?.courseType ?? "",
-		startingYear: educationInfo?.startingYear ?? new Date(),
-		graduationYear: educationInfo?.graduationYear ?? new Date(),
+		startingYear: educationInfo?.startingYear ?? "",
+		graduationYear: educationInfo?.graduationYear ?? "",
 		gradingSystem: educationInfo?.gradingSystem ?? "no",
 		marks: educationInfo?.marks ?? "no",
 		completed: educationInfo?.completed ?? "no",
@@ -86,8 +86,8 @@ export const getInitializedEmploymentInfo = (
 		totalExperience: employmentInfo?.totalExperience ?? 0,
 		companyName: employmentInfo?.companyName ?? "",
 		jobTitle: employmentInfo?.jobTitle ?? "",
-		joiningDate: employmentInfo?.joiningDate ?? new Date(),
-		leavingDate: employmentInfo?.leavingDate ?? new Date(),
+		joiningDate: employmentInfo?.joiningDate ?? "",
+		leavingDate: employmentInfo?.leavingDate ?? "",
 		skills: employmentInfo?.skills ?? [],
 		jobProfile: employmentInfo?.jobProfile ?? "",
 		noticePeriod: employmentInfo?.noticePeriod ?? "",
@@ -103,8 +103,8 @@ export const getInitializedProjectInfo = (
 		projectAssociation: projectInfo?.projectAssociation ?? "self-project",
 		client: projectInfo?.client ?? "self",
 		projectStatus: projectInfo?.projectStatus ?? "completed",
-		started: projectInfo?.started ?? new Date(),
-		completed: projectInfo?.completed ?? new Date(),
+		started: projectInfo?.started ?? "2021-05-12",
+		completed: projectInfo?.completed ?? "2021-06-23",
 		projectDetails: projectInfo?.projectDetails ?? "",
 		skillsUsed: projectInfo?.skillsUsed ?? [],
 		liveLink: projectInfo?.liveLink ?? "",
@@ -127,8 +127,8 @@ export const tagEmploymentEducation = () => {
 		};
 	});
 	const selfProject = {
-		label: "self project",
-		value: "self project",
+		label: "self-project",
+		value: "self-project",
 	};
 
 	return [...employmentList, ...educationList, selfProject];
