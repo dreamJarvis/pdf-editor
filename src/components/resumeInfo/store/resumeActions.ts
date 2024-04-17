@@ -12,3 +12,8 @@ export const EDUCATION_INFO_ACTIONS = {
 	ADD_ACTIONS: "add-education-info",
 	UPDATE_ACTIONS: "update-education-info",
 };
+
+export const EMPLOYMENT_INFO_ACTIONS = {
+	ADD_ACTIONS: "add-employment-info",
+	UPDATE_ACTIONS: "update-employment-info",
+};

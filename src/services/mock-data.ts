@@ -29,11 +29,11 @@ export const tempEmploymentData: IEmploymentInfo = {
 	],
 	jobProfile:
 		"* As one of the first engineers who got to work on the company's new product, I helped in designing and developing the base framework for the front end using React & Material UI. \n* Applied Redux for better state memory management and to reduce props drilling. \n* Applied Redux RTK for API cache for the project, to reduce the number of API calls and server costs.",
-	noticePeriod: "2 months",
+	noticePeriod: "2month",
 };
 
 export const tempEmploymentData2: IEmploymentInfo = {
-	id: new Date().getMilliseconds(),
+	id: new Date().getMilliseconds() * 2,
 	currentEmployer: true,
 	employmenttype: "Full-time",
 	totalExperience: 8,
@@ -50,7 +50,7 @@ export const tempEmploymentData2: IEmploymentInfo = {
 	],
 	jobProfile:
 		"Received industrial training on java backend and microservices. - Learned Spring Boot as back-end technology.\nWorked with Spring Boot, Spring Security, Spring Data JPA, and Hibernate.\nUsed JUnit, and Mockito For Test Driven Development.\nWorked with Postman, Apache Tomcat, H2 Databases, Mockito, Eureka Server, and Hystrix\n  Worked as a Angular(10+) developer",
-	noticePeriod: "2 months",
+	noticePeriod: "2month",
 };
 
 export const tempEducationData: IEducationInfo = {

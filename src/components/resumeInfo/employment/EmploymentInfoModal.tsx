@@ -10,73 +10,49 @@ import {
 	RadioGroup,
 	TextField,
 } from "@mui/material";
-import { useState } from "react";
+import { useReducer } from "react";
 import { useDispatch } from "react-redux";
-import { addNewEmploymentData } from "../../../services/resumeData";
+import {
+	addNewEmploymentData,
+	updateEmploymentDate,
+} from "../../../services/resumeData";
 import { IEmploymentInfo } from "../../../services/types";
-import { getTotalExperienceInMonths } from "../../utils/common";
+import {
+	getInitializedEmploymentInfo,
+	getTotalExperienceInMonths,
+} from "../../utils/common";
+import { employmentInfoReducer } from "../store/employmentStore";
+import { NOTICE_PERIOD } from "../../utils/constants";
+import { EMPLOYMENT_INFO_ACTIONS } from "../store/resumeActions";
 
-const noticePeriod = [
-	{
-		value: "Immediate",
-		label: "15 days or less",
-	},
-	{
-		value: "1month",
-		label: "1 month",
-	},
-	{
-		value: "2month",
-		label: "2 month",
-	},
-	{
-		value: "3month",
-		label: "3 months",
-	},
-	{
-		value: "morethan3month",
-		label: "more than 3 months",
-	},
-	{
-		value: "serving",
-		label: "serving notice period",
-	},
-];
-
-/* 
-	TODO: use useReducers, instead of multiple useState() for tha same objects
-*/
-export const EmploymentInfoModal = ({ closeModal }: { closeModal: any }) => {
-	const [currentEmployer, setCurrentEmployer] = useState("no");
-	const [employmentType, setEmploymentType] = useState("");
-	const [companyName, setCompanyName] = useState("");
-	const [jobTitle, setJobTitle] = useState("");
-	const [joinedDate, setJoinedDate] = useState("");
-	const [resignationDate, setResignationDate] = useState("");
-	const [jobProfile, setJobProfile] = useState("");
-	const [noticePeriodVal, setNoticePeriodVal] = useState("");
-	const [skillSet, setSkillsSet] = useState("");
-
+export const EmploymentInfoModal = ({
+	employmentInfo,
+	closeModal,
+	action,
+}: {
+	closeModal: any;
+	action: string;
+	employmentInfo: IEmploymentInfo | null;
+}) => {
+	const [employmentData, dispatchEmploymentData] = useReducer(
+		employmentInfoReducer,
+		getInitializedEmploymentInfo(employmentInfo)
+	);
 	const dispatch = useDispatch();
 
 	const addEmploymentInfo = () => {
-		const newEmploymentData: IEmploymentInfo = {
-			id: new Date().getMilliseconds(),
-			currentEmployer: currentEmployer === "no" ? false : true,
-			employmenttype: employmentType,
-			companyName: companyName,
+		const newEmploymentData = {
+			...employmentData,
 			totalExperience: getTotalExperienceInMonths(
-				new Date(joinedDate),
-				new Date(resignationDate)
+				employmentData?.joiningDate,
+				employmentData?.leavingDate ?? new Date()
 			),
-			jobTitle: jobTitle,
-			joiningDate: new Date(joinedDate),
-			leavingDate: new Date(resignationDate),
-			skills: skillSet.split(", "),
-			jobProfile: jobProfile,
-			noticePeriod: noticePeriodVal,
 		};
-		dispatch(addNewEmploymentData(newEmploymentData));
+		if (action === "ADD") {
+			dispatch(addNewEmploymentData(newEmploymentData));
+		} else if (action === "EDIT") {
+			dispatch(updateEmploymentDate(newEmploymentData));
+		}
 		closeModal(false);
 	};
 
@@ -93,7 +69,15 @@ export const EmploymentInfoModal = ({ closeModal }: { closeModal: any }) => {
 								row
 								aria-labelledby='demo-row-radio-buttons-group-label'
 								name='row-radio-buttons-group'
-								onChange={(e) => setEmploymentType(e.target.value)}>
+								value={employmentData?.employmenttype}
+								onChange={(e) => {
+									dispatchEmploymentData({
+										type: EMPLOYMENT_INFO_ACTIONS.ADD_ACTIONS,
+										payload: {
+											employmenttype: e.target.value,
+										},
+									});
+								}}>
 								<FormControlLabel
 									value='full time'
 									control={<Radio />}
@@ -117,9 +101,15 @@ export const EmploymentInfoModal = ({ closeModal }: { closeModal: any }) => {
 							</FormLabel>
 							<RadioGroup
 								row
-								defaultValue={currentEmployer}
+								defaultValue={employmentData?.currentEmployer ? "yes" : "no"}
+								value={employmentData?.currentEmployer}
 								onChange={(e) => {
-									setCurrentEmployer(e.target.value);
+									dispatchEmploymentData({
+										type: EMPLOYMENT_INFO_ACTIONS.ADD_ACTIONS,
+										payload: {
+											currentEmployer: e.target.value === "yes",
+										},
+									});
 								}}
 								aria-labelledby='current-employer-group-label'
 								name='row-radio-buttons-group'>
@@ -134,8 +124,15 @@ export const EmploymentInfoModal = ({ closeModal }: { closeModal: any }) => {
 								id='company-name'
 								label='Company Name'
 								variant='outlined'
-								value={companyName}
-								onChange={(e) => setCompanyName(e.target.value)}
+								value={employmentData?.companyName}
+								onChange={(e) => {
+									dispatchEmploymentData({
+										type: EMPLOYMENT_INFO_ACTIONS.ADD_ACTIONS,
+										payload: {
+											companyName: e.target.value,
+										},
+									});
+								}}
 								fullWidth
 								required
 							/>
@@ -144,8 +141,15 @@ export const EmploymentInfoModal = ({ closeModal }: { closeModal: any }) => {
 							<TextField
 								id='jobTitle'
 								label='Job Title'
-								value={jobTitle}
-								onChange={(e) => setJobTitle(e.target.value)}
+								value={employmentData?.jobTitle}
+								onChange={(e) => {
+									dispatchEmploymentData({
+										type: EMPLOYMENT_INFO_ACTIONS.ADD_ACTIONS,
+										payload: {
+											jobTitle: e.target.value,
+										},
+									});
+								}}
 								fullWidth
 								required
 								variant='outlined'
@@ -158,18 +162,34 @@ export const EmploymentInfoModal = ({ closeModal }: { closeModal: any }) => {
 								</label>
 								<input
 									type='date'
-									onChange={(e) => setJoinedDate(e.target.value)}
+									value={employmentData?.joiningDate.toISOString()}
+									onChange={(e) => {
+										dispatchEmploymentData({
+											type: EMPLOYMENT_INFO_ACTIONS.ADD_ACTIONS,
+											payload: {
+												joiningDate: new Date(e.target.value),
+											},
+										});
+									}}
 									className='h-12 bg-slate-200 p-4 rounded-md'
 								/>
 							</div>
-							{currentEmployer === "no" && (
+							{!employmentData?.currentEmployer && (
 								<div className='leaving-date basis-2/4'>
-									<label htmlFor='joiningDate' className='basis-2/4'>
+									<label htmlFor='leavingDate' className='basis-2/4'>
 										left :{" "}
 									</label>
 									<input
 										type='date'
-										onChange={(e) => setResignationDate(e.target.value)}
+										value={employmentData?.leavingDate?.toISOString()}
+										onChange={(e) => {
+											dispatchEmploymentData({
+												type: EMPLOYMENT_INFO_ACTIONS.ADD_ACTIONS,
+												payload: {
+													leavingDate: new Date(e.target.value),
+												},
+											});
+										}}
 										className='h-12 bg-slate-200 p-4 rounded-md'
 									/>
 								</div>
@@ -179,8 +199,15 @@ export const EmploymentInfoModal = ({ closeModal }: { closeModal: any }) => {
 							<TextField
 								id='jobProfile'
 								label='job profile'
-								value={jobProfile}
-								onChange={(e) => setJobProfile(e.target.value)}
+								value={employmentData?.jobProfile}
+								onChange={(e) => {
+									dispatchEmploymentData({
+										type: EMPLOYMENT_INFO_ACTIONS.ADD_ACTIONS,
+										payload: {
+											jobProfile: e.target.value,
+										},
+									});
+								}}
 								multiline
 								fullWidth
 								rows={4}
@@ -192,10 +219,18 @@ export const EmploymentInfoModal = ({ closeModal }: { closeModal: any }) => {
 								id='noticePeriod'
 								select
 								label='Notice Period'
-								onChange={(e) => setNoticePeriodVal(e.target.value)}
+								value={employmentData?.noticePeriod}
+								onChange={(e) => {
+									dispatchEmploymentData({
+										type: EMPLOYMENT_INFO_ACTIONS.ADD_ACTIONS,
+										payload: {
+											noticePeriod: e.target.value,
+										},
+									});
+								}}
 								defaultValue=''
 								fullWidth>
-								{noticePeriod.map((option) => (
+								{NOTICE_PERIOD.map((option) => (
 									<MenuItem key={option.value} value={option.value}>
 										{option.label}
 									</MenuItem>
@@ -206,7 +241,15 @@ export const EmploymentInfoModal = ({ closeModal }: { closeModal: any }) => {
 							<TextField
 								id='skills'
 								label='skills'
-								onChange={(e) => setSkillsSet(e.target.value)}
+								value={employmentData?.skills?.join()}
+								onChange={(e) => {
+									dispatchEmploymentData({
+										type: EMPLOYMENT_INFO_ACTIONS.ADD_ACTIONS,
+										payload: {
+											skills: e.target.value.split(","),
+										},
+									});
+								}}
 								fullWidth
 								helperText='seperate skills with a ,'
 								placeholder='React.Js, Javascript...'
@@ -219,7 +262,7 @@ export const EmploymentInfoModal = ({ closeModal }: { closeModal: any }) => {
 							color='primary'
 							onClick={addEmploymentInfo}
 							sx={{ marginRight: "2rem" }}>
-							Add
+							{action === "ADD" ? "ADD" : "EDIT"}
 						</Button>
 						<Button
 							variant='contained'

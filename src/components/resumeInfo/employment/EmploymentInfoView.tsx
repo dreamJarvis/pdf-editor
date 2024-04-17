@@ -1,8 +1,12 @@
 /** @format */
 
-import { Box, Button } from "@mui/material";
+import { Box, Button, Modal } from "@mui/material";
 import { IEmploymentInfo } from "../../../services/types";
 import EditIcon from "@mui/icons-material/Edit";
+import { EmploymentInfoModal } from "./EmploymentInfoModal";
+import { ACTION_TYPE } from "../../utils/constants";
+import { getInitializedEmploymentInfo } from "../../utils/common";
+import { useState } from "react";
 
 /* 
 	TODO: edit option
@@ -20,6 +24,8 @@ export const EmploymentInfoView = ({
 		leavingDate,
 		employmenttype,
 	} = employmentInfo;
+
+	const [openEmploymentModal, setOpenEmploymentModal] = useState(false);
 
 	const totalDurationOfMonths =
 		(leavingDate ? leavingDate.getMonth() : 0) + (12 - joiningDate?.getMonth());
@@ -40,7 +46,23 @@ export const EmploymentInfoView = ({
 						<h1>{jobTitle}</h1>
 					</div>
 					<div className='flex flex-col w-[100%] items-end basis-1/6'>
-						<Button startIcon={<EditIcon />} color='success' />
+						<Button
+							startIcon={<EditIcon />}
+							color='success'
+							onClick={() => setOpenEmploymentModal(true)}
+						/>
+						<Modal
+							open={openEmploymentModal}
+							style={{ overflow: "auto", paddingBottom: "10px" }}
+							onClose={() => setOpenEmploymentModal(false)}
+							aria-labelledby='add-employment-detail-modal'
+							aria-describedby='add-employment-description'>
+							<EmploymentInfoModal
+								employmentInfo={getInitializedEmploymentInfo(employmentInfo)}
+								action={ACTION_TYPE.edit}
+								closeModal={setOpenEmploymentModal}
+							/>
+						</Modal>
 					</div>
 				</div>
 				<div className='employment-info-company-name mt-1'>

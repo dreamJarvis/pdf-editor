@@ -8,6 +8,8 @@ import Modal from "@mui/material/Modal";
 import { useState } from "react";
 import { EmploymentInfoModal } from "./EmploymentInfoModal";
 import AddIcon from "@mui/icons-material/Add";
+import { ACTION_TYPE } from "../../utils/constants";
+import { getInitializedEmploymentInfo } from "../../utils/common";
 
 export const EmploymentInfo = () => {
 	const employmentInfo = useSelector(
@@ -30,14 +32,19 @@ export const EmploymentInfo = () => {
 								variant='contained'
 								color='success'
 								startIcon={<AddIcon fontSize='large' />}
-								onClick={() => setOpenEmploymentModal(true)}></Button>
+								onClick={() => setOpenEmploymentModal(true)}
+							/>
 							<Modal
 								open={openEmploymentModal}
 								style={{ overflow: "auto", paddingBottom: "10px" }}
 								onClose={() => setOpenEmploymentModal(false)}
 								aria-labelledby='add-employment-detail-modal'
 								aria-describedby='add-employment-description'>
-								<EmploymentInfoModal closeModal={setOpenEmploymentModal} />
+								<EmploymentInfoModal
+									employmentInfo={getInitializedEmploymentInfo(null)}
+									action={ACTION_TYPE.add}
+									closeModal={setOpenEmploymentModal}
+								/>
 							</Modal>
 						</div>
 					</div>

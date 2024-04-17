@@ -1,6 +1,10 @@
 /** @format */
 
-import { IEducationInfo, IPersonalInfo } from "../../services/types";
+import {
+	IEducationInfo,
+	IEmploymentInfo,
+	IPersonalInfo,
+} from "../../services/types";
 
 export const getTotalExperienceInMonths = (
 	leavingDate: Date,
@@ -67,5 +71,23 @@ export const getInitializedEducationData = (
 		gradingSystem: educationInfo?.gradingSystem ?? "no",
 		marks: educationInfo?.marks ?? "no",
 		completed: educationInfo?.completed ?? "no",
+	};
+};
+
+export const getInitializedEmploymentInfo = (
+	employmentInfo: IEmploymentInfo | null
+): IEmploymentInfo => {
+	return {
+		id: employmentInfo?.id ?? new Date().getMilliseconds(),
+		currentEmployer: employmentInfo?.currentEmployer ?? false,
+		employmenttype: employmentInfo?.employmenttype ?? "",
+		totalExperience: employmentInfo?.totalExperience ?? 0,
+		companyName: employmentInfo?.companyName ?? "",
+		jobTitle: employmentInfo?.jobTitle ?? "",
+		joiningDate: employmentInfo?.joiningDate ?? new Date(),
+		leavingDate: employmentInfo?.leavingDate ?? new Date(),
+		skills: employmentInfo?.skills ?? [],
+		jobProfile: employmentInfo?.jobProfile ?? "",
+		noticePeriod: employmentInfo?.noticePeriod ?? "",
 	};
 };

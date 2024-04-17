@@ -30,4 +30,31 @@ export const GRADING_SYSTEM = [
 	},
 ];
 
+export const NOTICE_PERIOD = [
+	{
+		value: "Immediate",
+		label: "15 days or less",
+	},
+	{
+		value: "1month",
+		label: "1 month",
+	},
+	{
+		value: "2month",
+		label: "2 month",
+	},
+	{
+		value: "3month",
+		label: "3 months",
+	},
+	{
+		value: "morethan3month",
+		label: "more than 3 months",
+	},
+	{
+		value: "serving",
+		label: "serving notice period",
+	},
+];
+
 export const ACTION_TYPE = { add: "ADD", edit: "EDIT", delete: "DELETE" };
