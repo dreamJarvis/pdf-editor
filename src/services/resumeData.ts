@@ -64,6 +64,14 @@ export const resumeDataSlice = createSlice({
 			const updateSkillData = [...state.skills, action.payload];
 			state.skills = updateSkillData;
 		},
+		updateSkillData: (state, action) => {
+			const updatedData = { ...action.payload };
+			const updatedSkillInfo = state.skills.map((info) => {
+				if (info.id === updatedData.id) return { ...info, ...updatedData };
+				return info;
+			});
+			state.skills = updatedSkillInfo;
+		},
 		addPersonalData: (state, action) => {
 			const updatePersonalData = {
 				...state.personalDetails,
@@ -83,5 +91,6 @@ export const {
 	updateEducationDate,
 	updateEmploymentDate,
 	updateProjectData,
+	updateSkillData,
 } = resumeDataSlice.actions;
 export default resumeDataSlice.reducer;

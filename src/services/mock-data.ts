@@ -129,7 +129,7 @@ export const tempProjetData2: IProjectInfo = {
 };
 
 export const tempSkillData: ISkill = {
-	id: new Date().getMilliseconds().toString(),
+	id: new Date("2020-01-02").getMilliseconds(),
 	skill: "ReactJs",
 	softwareVersion: ">= 16.0",
 	lastUsed: "2024-05-02",
@@ -138,10 +138,10 @@ export const tempSkillData: ISkill = {
 };
 
 export const tempSkillData2: ISkill = {
-	id: new Date().getMilliseconds().toString(),
+	id: new Date("2020-01-20").getMilliseconds() * 2,
 	skill: "Redux",
 	softwareVersion: ">= 10.0",
 	lastUsed: "2024-05-02",
-	usedFrom: "2020-01-02",
+	usedFrom: "2020-01-20",
 	usedTill: "2024-05-02",
 };

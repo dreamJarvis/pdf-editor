@@ -22,3 +22,8 @@ export const PROJECT_INFO_ACTIONS = {
 	ADD_ACTIONS: "add-project-info",
 	UPDATE_ACTIONS: "update-project-info",
 };
+
+export const SKILL_INFO_ACTIONS = {
+	ADD_ACTIONS: "add-project-info",
+	UPDATE_ACTIONS: "update-project-info",
+};

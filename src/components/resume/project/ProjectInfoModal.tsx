@@ -10,7 +10,7 @@ import {
 	RadioGroup,
 	TextField,
 } from "@mui/material";
-import { useReducer, useState } from "react";
+import { useReducer } from "react";
 import { useDispatch } from "react-redux";
 import {
 	addNewProjectData,
@@ -23,11 +23,6 @@ import {
 } from "../../utils/common";
 import { projectInfoReducer } from "../store/projectStore";
 import { PROJECT_INFO_ACTIONS } from "../store/resumeActions";
-import { DateField } from "@mui/x-date-pickers/DateField";
-import dayjs from "dayjs";
-import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
-import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
-import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 /* 
 	TODO: add None/self option to tag project option
 */
@@ -51,9 +46,6 @@ export const ProjectInfoModal = ({
 		if (actionType === "EDIT") dispatch(updateProjectData(projectData));
 		closeModal(false);
 	};
-
-	const [joiningDate, setJoinedDate] = useState("2024-04-21");
-	const [leavingDate, setLeavingDate] = useState(new Date());
 
 	return (
 		<div>

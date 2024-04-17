@@ -1,35 +1,33 @@
 /** @format */
+/** @format */
 
 import { Button, Paper, TextField } from "@mui/material";
-import React, { useState } from "react";
+import { useReducer } from "react";
 import { ISkill } from "../../../services/types";
 import { useDispatch } from "react-redux";
-import { addNewSkillData } from "../../../services/resumeData";
+import { addNewSkillData, updateSkillData } from "../../../services/resumeData";
+import { getInitializedSkillInfo } from "../../utils/common";
+import { skillInfoReducer } from "../store/skillStore";
+import { SKILL_INFO_ACTIONS } from "../store/resumeActions";
 
-/* 
-	TODO: convert Date type to string type
-*/
 export const SkillInfoModal = ({
 	setOpenSkillModal,
+	skillInfo,
+	actionType,
 }: {
 	setOpenSkillModal: Function;
+	skillInfo: ISkill | null;
+	actionType: string;
 }) => {
-	const [skillName, setSkillName] = useState("");
-	const [softwareVersion, setSoftwareVersion] = useState("");
-	const [started, setStarted] = useState("");
-	const [ended, setEnded] = useState("");
 	const dispatch = useDispatch();
+	const [SkillData, dispatchSkillData] = useReducer(
+		skillInfoReducer,
+		getInitializedSkillInfo(skillInfo)
+	);
 
 	const addSkillInfo = () => {
-		const newSkillData: ISkill = {
-			id: new Date().getMilliseconds().toString(),
-			skill: skillName,
-			softwareVersion: softwareVersion,
-			lastUsed: ended,
-			usedFrom: started,
-			usedTill: ended,
-		};
-		dispatch(addNewSkillData(newSkillData));
+		if (actionType === "ADD") dispatch(addNewSkillData(SkillData));
+		if (actionType === "EDIT") dispatch(updateSkillData(SkillData));
 		setOpenSkillModal(false);
 	};
 
@@ -51,8 +49,14 @@ export const SkillInfoModal = ({
 								<TextField
 									id='skill'
 									label='skill'
-									onChange={(e) => setSkillName(e.target.value)}
-									defaultValue=''
+									onChange={(e) => {
+										dispatchSkillData({
+											type: SKILL_INFO_ACTIONS.ADD_ACTIONS,
+											payload: { skill: e.target.value },
+										});
+									}}
+									defaultValue={SkillData?.skill}
+									value={SkillData?.skill}
 									fullWidth
 								/>
 							</div>
@@ -60,8 +64,14 @@ export const SkillInfoModal = ({
 								<TextField
 									id='softwareVersion'
 									label='version'
-									onChange={(e) => setSoftwareVersion(e.target.value)}
-									defaultValue=''
+									onChange={(e) => {
+										dispatchSkillData({
+											type: SKILL_INFO_ACTIONS.ADD_ACTIONS,
+											payload: { softwareVersion: e.target.value },
+										});
+									}}
+									defaultValue={SkillData?.softwareVersion}
+									value={SkillData?.softwareVersion}
 									fullWidth
 								/>
 							</div>
@@ -74,17 +84,34 @@ export const SkillInfoModal = ({
 									</label>
 									<input
 										type='date'
-										onChange={(e) => setStarted(e.target.value)}
+										defaultValue={SkillData?.usedFrom}
+										value={SkillData?.usedFrom}
+										onChange={(e) => {
+											dispatchSkillData({
+												type: SKILL_INFO_ACTIONS.ADD_ACTIONS,
+												payload: { usedFrom: e.target.value },
+											});
+										}}
 										className='h-12 bg-slate-200 p-4 rounded-md'
 									/>
 								</div>
 								<div className='leaving-date basis-2/4'>
-									<label htmlFor='joiningDate' className='basis-2/4'>
+									<label htmlFor='leavingDate' className='basis-2/4'>
 										to :{" "}
 									</label>
 									<input
 										type='date'
-										onChange={(e) => setEnded(e.target.value)}
+										defaultValue={SkillData?.usedTill}
+										value={SkillData?.usedTill}
+										onChange={(e) => {
+											dispatchSkillData({
+												type: SKILL_INFO_ACTIONS.ADD_ACTIONS,
+												payload: {
+													usedTill: e.target.value,
+													lastUsed: e.target.value,
+												},
+											});
+										}}
 										className='h-12 bg-slate-200 p-4 rounded-md'
 									/>
 								</div>
@@ -96,7 +123,7 @@ export const SkillInfoModal = ({
 								color='primary'
 								onClick={addSkillInfo}
 								sx={{ marginRight: "2rem" }}>
-								Add
+								{actionType}
 							</Button>
 							<Button
 								variant='contained'

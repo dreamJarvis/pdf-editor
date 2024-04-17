@@ -75,7 +75,7 @@ export interface IProjectInfo {
 }
 
 export interface ISkill {
-	id: string;
+	id: number;
 	skill: string;
 	softwareVersion: string;
 	lastUsed: string;

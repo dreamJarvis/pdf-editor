@@ -7,6 +7,7 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../store";
 import { SkillInfoList } from "./SkillInfoList";
+import { ACTION_TYPE } from "../../utils/constants";
 
 export const SkillInfo = () => {
 	const skillList = useSelector((state: RootState) => state.skills);
@@ -28,14 +29,19 @@ export const SkillInfo = () => {
 									variant='contained'
 									color='success'
 									startIcon={<AddIcon fontSize='large' />}
-									onClick={() => setOpenSkillModal(true)}></Button>
+									onClick={() => setOpenSkillModal(true)}
+								/>
 								<Modal
 									style={{ overflow: "auto", paddingBottom: "10px" }}
 									open={skillModal}
 									onClose={() => setOpenSkillModal(false)}
 									aria-labelledby='add-employment-detail-modal'
 									aria-describedby='add-employment-description'>
-									<SkillInfoModal setOpenSkillModal={setOpenSkillModal} />
+									<SkillInfoModal
+										actionType={ACTION_TYPE.add}
+										skillInfo={null}
+										setOpenSkillModal={setOpenSkillModal}
+									/>
 								</Modal>
 							</div>
 						</div>

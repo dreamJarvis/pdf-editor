@@ -1,11 +1,15 @@
 /** @format */
 
-import { Box, Button } from "@mui/material";
+import { Box, Button, Modal } from "@mui/material";
 import { ISkill } from "../../../services/types";
 import EditIcon from "@mui/icons-material/Edit";
+import { SkillInfoModal } from "./SkillInfoModal";
+import { ACTION_TYPE } from "../../utils/constants";
+import { useState } from "react";
 
 export const SkillInfoView = ({ skillInfo }: { skillInfo: ISkill }) => {
 	const { skill, softwareVersion, lastUsed, usedFrom, usedTill } = skillInfo;
+	const [skillModal, setOpenSkillModal] = useState(false);
 
 	const lastUsedYYMMDD = new Date(lastUsed);
 	const usedTillYYMMDD = new Date(usedTill);
@@ -37,7 +41,23 @@ export const SkillInfoView = ({ skillInfo }: { skillInfo: ISkill }) => {
 							</h1>
 						</div>
 						<div className='experience'>
-							<Button startIcon={<EditIcon />} color='success' />
+							<Button
+								startIcon={<EditIcon />}
+								color='success'
+								onClick={() => setOpenSkillModal(true)}
+							/>
+							<Modal
+								style={{ overflow: "auto", paddingBottom: "10px" }}
+								open={skillModal}
+								onClose={() => setOpenSkillModal(false)}
+								aria-labelledby='add-employment-detail-modal'
+								aria-describedby='add-employment-description'>
+								<SkillInfoModal
+									actionType={ACTION_TYPE.edit}
+									skillInfo={skillInfo}
+									setOpenSkillModal={setOpenSkillModal}
+								/>
+							</Modal>
 						</div>
 					</div>
 				</div>

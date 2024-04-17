@@ -5,6 +5,7 @@ import {
 	IEmploymentInfo,
 	IPersonalInfo,
 	IProjectInfo,
+	ISkill,
 } from "../../services/types";
 import { store } from "../../store";
 
@@ -109,6 +110,17 @@ export const getInitializedProjectInfo = (
 		skillsUsed: projectInfo?.skillsUsed ?? [],
 		liveLink: projectInfo?.liveLink ?? "",
 		repositoryLink: projectInfo?.repositoryLink ?? "",
+	};
+};
+
+export const getInitializedSkillInfo = (skillInfo: ISkill | null): ISkill => {
+	return {
+		id: skillInfo?.id ?? new Date().getMilliseconds(),
+		skill: skillInfo?.skill ?? "",
+		softwareVersion: skillInfo?.softwareVersion ?? "",
+		lastUsed: skillInfo?.lastUsed ?? "",
+		usedFrom: skillInfo?.usedFrom ?? "",
+		usedTill: skillInfo?.usedTill ?? "",
 	};
 };
 
