@@ -10,61 +10,41 @@ import {
 	RadioGroup,
 	TextField,
 } from "@mui/material";
-
-import { useState } from "react";
-import { RootState } from "../../../store";
-import { useDispatch, useSelector } from "react-redux";
-import { addNewProjectData } from "../../../services/resumeData";
+import { useReducer } from "react";
+import { useDispatch } from "react-redux";
+import {
+	addNewProjectData,
+	updateProjectData,
+} from "../../../services/resumeData";
 import { IProjectInfo } from "../../../services/types";
+import {
+	getInitializedProjectInfo,
+	tagEmploymentEducation,
+} from "../../utils/common";
+import { projectInfoReducer } from "../store/projectStore";
+import { PROJECT_INFO_ACTIONS } from "../store/resumeActions";
 
-export const ProjectInfoModal = ({ closeModal }: { closeModal: Function }) => {
-	const education = useSelector((state: RootState) => state.education);
-	const employment = useSelector((state: RootState) => state.employmentInfo);
-
-	const [projectTitle, setProjectTitle] = useState("");
-	const [projectTag, setProjectTag] = useState("");
-	const [client, setClient] = useState("");
-	const [projectStatus, setProjectStatus] = useState("completed");
-	const [startingYear, setStartingYear] = useState("");
-	const [endingYear, setEndingYear] = useState("");
-	const [projectDetails, setProjectDetails] = useState("");
-	const [skillSet, setSkillsSet] = useState("");
-	const [liveLink, setLiveLink] = useState("");
-	const [repoLink, setRepoLink] = useState("");
+/* 
+	TODO: add None/self option to tag project option
+*/
+export const ProjectInfoModal = ({
+	closeModal,
+	projectInfo,
+	actionType,
+}: {
+	closeModal: Function;
+	projectInfo: IProjectInfo | null;
+	actionType: string;
+}) => {
 	const dispatch = useDispatch();
-
-	const tagEmploymenteducation = () => {
-		const employmentList = employment.map((info) => {
-			return {
-				label: `${info.jobTitle} - ${info.companyName}`,
-				value: `${info.jobTitle} - ${info.companyName}`,
-			};
-		});
-		const educationList = education.map((info) => {
-			return {
-				label: `${info.course} - ${info.university}`,
-				value: `${info.course} - ${info.university}`,
-			};
-		});
-
-		return [...employmentList, ...educationList];
-	};
+	const [projectData, dispatchProjectlData] = useReducer(
+		projectInfoReducer,
+		getInitializedProjectInfo(projectInfo)
+	);
 
 	const addProjectInfo = () => {
-		const newProjectData: IProjectInfo = {
-			id: new Date().getMilliseconds().toString(),
-			projectTitle: projectTitle,
-			projectAssociation: projectTag,
-			client: client,
-			projectStatus: projectStatus,
-			started: new Date(startingYear),
-			completed: new Date(endingYear),
-			projectDetails: projectDetails,
-			skillsUsed: skillSet.split(","),
-			liveLink: liveLink,
-			repositoryLink: repoLink,
-		};
-		dispatch(addNewProjectData(newProjectData));
+		if (actionType === "ADD") dispatch(addNewProjectData(projectData));
+		if (actionType === "EDIT") dispatch(updateProjectData(projectData));
 		closeModal(false);
 	};
 
@@ -79,7 +59,13 @@ export const ProjectInfoModal = ({ closeModal }: { closeModal: Function }) => {
 									<TextField
 										id='projectTitle'
 										label='Project Title'
-										onChange={(e) => setProjectTitle(e.target.value)}
+										value={projectData?.projectTitle}
+										onChange={(e) => {
+											dispatchProjectlData({
+												type: PROJECT_INFO_ACTIONS.ADD_ACTIONS,
+												payload: { projectTitle: e.target.value },
+											});
+										}}
 										defaultValue=''
 										fullWidth
 									/>
@@ -89,10 +75,16 @@ export const ProjectInfoModal = ({ closeModal }: { closeModal: Function }) => {
 										id='projectTag'
 										select
 										label='Tag this project with your employment/education'
-										onChange={(e) => setProjectTag(e.target.value)}
-										defaultValue=''
+										defaultValue={projectData?.projectAssociation}
+										value={projectData?.projectAssociation}
+										onChange={(e) => {
+											dispatchProjectlData({
+												type: PROJECT_INFO_ACTIONS.ADD_ACTIONS,
+												payload: { projectAssociation: e.target.value },
+											});
+										}}
 										fullWidth>
-										{tagEmploymenteducation().map((option) => (
+										{tagEmploymentEducation().map((option) => (
 											<MenuItem key={option.value} value={option.value}>
 												{option.label}
 											</MenuItem>
@@ -105,8 +97,14 @@ export const ProjectInfoModal = ({ closeModal }: { closeModal: Function }) => {
 									<TextField
 										id='client'
 										label='client'
-										onChange={(e) => setClient(e.target.value)}
-										defaultValue=''
+										value={projectData?.client}
+										onChange={(e) => {
+											dispatchProjectlData({
+												type: PROJECT_INFO_ACTIONS.ADD_ACTIONS,
+												payload: { client: e.target.value },
+											});
+										}}
+										defaultValue={projectData?.client}
 										fullWidth
 										required
 									/>
@@ -120,8 +118,14 @@ export const ProjectInfoModal = ({ closeModal }: { closeModal: Function }) => {
 									row
 									aria-labelledby='project-status-group-label'
 									name='project-status-radio-buttons-group'
-									defaultValue={projectStatus}
-									onChange={(e) => setProjectStatus(e.target.value)}>
+									defaultValue={projectData?.projectStatus}
+									value={projectData?.projectStatus}
+									onChange={(e) => {
+										dispatchProjectlData({
+											type: PROJECT_INFO_ACTIONS.ADD_ACTIONS,
+											payload: { projectStatus: e.target.value },
+										});
+									}}>
 									<FormControlLabel
 										value='completed'
 										control={<Radio />}
@@ -141,18 +145,30 @@ export const ProjectInfoModal = ({ closeModal }: { closeModal: Function }) => {
 									</label>
 									<input
 										type='date'
-										onChange={(e) => setStartingYear(e.target.value)}
+										value={projectData?.started.toLocaleDateString()}
+										onChange={(e) => {
+											dispatchProjectlData({
+												type: PROJECT_INFO_ACTIONS.ADD_ACTIONS,
+												payload: { started: new Date(e.target.value) },
+											});
+										}}
 										className='h-12 bg-slate-200 p-4 rounded-md'
 									/>
 								</div>
-								{projectStatus === "completed" && (
+								{projectData?.projectStatus === "completed" && (
 									<div className='leaving-date basis-2/4'>
 										<label htmlFor='joiningDate' className='basis-2/4'>
 											completed :{" "}
 										</label>
 										<input
 											type='date'
-											onChange={(e) => setEndingYear(e.target.value)}
+											value={projectData?.completed.toLocaleDateString()}
+											onChange={(e) => {
+												dispatchProjectlData({
+													type: PROJECT_INFO_ACTIONS.ADD_ACTIONS,
+													payload: { completed: new Date(e.target.value) },
+												});
+											}}
 											className='h-12 bg-slate-200 p-4 rounded-md'
 										/>
 									</div>
@@ -162,9 +178,15 @@ export const ProjectInfoModal = ({ closeModal }: { closeModal: Function }) => {
 								<div className='m-2 w-full'>
 									<TextField
 										id='projectDetails'
+										value={projectData?.projectDetails}
 										label='Project Details'
-										onChange={(e) => setProjectDetails(e.target.value)}
-										defaultValue=''
+										onChange={(e) => {
+											dispatchProjectlData({
+												type: PROJECT_INFO_ACTIONS.ADD_ACTIONS,
+												payload: { projectDetails: e.target.value },
+											});
+										}}
+										defaultValue={projectData?.projectDetails}
 										multiline
 										fullWidth
 									/>
@@ -173,7 +195,13 @@ export const ProjectInfoModal = ({ closeModal }: { closeModal: Function }) => {
 									<TextField
 										id='skills'
 										label='skills'
-										onChange={(e) => setSkillsSet(e.target.value)}
+										value={projectData?.skillsUsed}
+										onChange={(e) => {
+											dispatchProjectlData({
+												type: PROJECT_INFO_ACTIONS.ADD_ACTIONS,
+												payload: { skillsUsed: e.target.value.split(",") },
+											});
+										}}
 										fullWidth
 										helperText='seperate skills with a ,'
 										placeholder='React.Js, Javascript...'
@@ -185,17 +213,31 @@ export const ProjectInfoModal = ({ closeModal }: { closeModal: Function }) => {
 									<TextField
 										id='liveLink'
 										label='live link'
-										onChange={(e) => setLiveLink(e.target.value)}
+										value={projectData?.liveLink}
+										onChange={(e) => {
+											dispatchProjectlData({
+												type: PROJECT_INFO_ACTIONS.ADD_ACTIONS,
+												payload: { liveLink: e.target.value },
+											});
+										}}
 										fullWidth
+										defaultValue={projectData?.liveLink}
 										helperText='project live link'
 										placeholder='...'
 									/>
 								</div>
 								<div className='m-2 w-1/2'>
 									<TextField
-										id='liveLink'
-										label='live link'
-										onChange={(e) => setRepoLink(e.target.value)}
+										id='repoLink'
+										label='repository link'
+										value={projectData?.repositoryLink}
+										onChange={(e) => {
+											dispatchProjectlData({
+												type: PROJECT_INFO_ACTIONS.ADD_ACTIONS,
+												payload: { repositoryLink: e.target.value },
+											});
+										}}
+										defaultValue={projectData?.repositoryLink}
 										fullWidth
 										helperText='project repo link'
 										placeholder='...'
@@ -208,7 +250,7 @@ export const ProjectInfoModal = ({ closeModal }: { closeModal: Function }) => {
 									color='primary'
 									onClick={addProjectInfo}
 									sx={{ marginRight: "2rem" }}>
-									Add
+									{actionType}
 								</Button>
 								<Button
 									variant='contained'

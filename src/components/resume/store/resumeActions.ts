@@ -17,3 +17,8 @@ export const EMPLOYMENT_INFO_ACTIONS = {
 	ADD_ACTIONS: "add-employment-info",
 	UPDATE_ACTIONS: "update-employment-info",
 };
+
+export const PROJECT_INFO_ACTIONS = {
+	ADD_ACTIONS: "add-project-info",
+	UPDATE_ACTIONS: "update-project-info",
+};

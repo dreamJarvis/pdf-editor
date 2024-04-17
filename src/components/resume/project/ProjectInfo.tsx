@@ -7,6 +7,7 @@ import AddIcon from "@mui/icons-material/Add";
 import { ProjectInfoModal } from "./ProjectInfoModal";
 import { useState } from "react";
 import { ProjectInfoList } from "./ProjectInfoList";
+import { ACTION_TYPE } from "../../utils/constants";
 
 export const ProjectInfo = () => {
 	const projectsList = useSelector((state: RootState) => state.projects);
@@ -27,14 +28,19 @@ export const ProjectInfo = () => {
 								variant='contained'
 								color='success'
 								startIcon={<AddIcon fontSize='large' />}
-								onClick={() => setOpenProjectModal(true)}></Button>
+								onClick={() => setOpenProjectModal(true)}
+							/>
 							<Modal
 								style={{ overflow: "auto", paddingBottom: "10px" }}
 								open={openProjectModal}
 								onClose={() => setOpenProjectModal(false)}
 								aria-labelledby='add-employment-detail-modal'
 								aria-describedby='add-employment-description'>
-								<ProjectInfoModal closeModal={setOpenProjectModal} />
+								<ProjectInfoModal
+									actionType={ACTION_TYPE.add}
+									closeModal={setOpenProjectModal}
+									projectInfo={null}
+								/>
 							</Modal>
 						</div>
 					</div>

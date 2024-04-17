@@ -262,7 +262,7 @@ export const EmploymentInfoModal = ({
 							color='primary'
 							onClick={addEmploymentInfo}
 							sx={{ marginRight: "2rem" }}>
-							{action === "ADD" ? "ADD" : "EDIT"}
+							{action}
 						</Button>
 						<Button
 							variant='contained'

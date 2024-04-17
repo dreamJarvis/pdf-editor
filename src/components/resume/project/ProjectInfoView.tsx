@@ -1,8 +1,11 @@
 /** @format */
 
-import { Box, Button } from "@mui/material";
+import { Box, Button, Modal } from "@mui/material";
 import { IProjectInfo } from "../../../services/types";
 import EditIcon from "@mui/icons-material/Edit";
+import { ProjectInfoModal } from "./ProjectInfoModal";
+import { useState } from "react";
+import { ACTION_TYPE } from "../../utils/constants";
 
 export const ProjectInfoView = ({
 	projectInfo,
@@ -22,6 +25,8 @@ export const ProjectInfoView = ({
 		repositoryLink,
 	} = projectInfo;
 
+	const [openProjectModal, setOpenProjectModal] = useState(false);
+
 	return (
 		<div className='employment-info w-5/6'>
 			<Box className='flex flex-col items-start bg-slate-200 p-2 mt-2 mb-3 shadow-md'>
@@ -32,7 +37,23 @@ export const ProjectInfoView = ({
 						</h1>
 					</div>
 					<div className='flex flex-col w-[100%] items-end basis-1/6'>
-						<Button startIcon={<EditIcon />} color='success' />
+						<Button
+							startIcon={<EditIcon />}
+							color='success'
+							onClick={() => setOpenProjectModal(true)}
+						/>
+						<Modal
+							style={{ overflow: "auto", paddingBottom: "10px" }}
+							open={openProjectModal}
+							onClose={() => setOpenProjectModal(false)}
+							aria-labelledby='add-employment-detail-modal'
+							aria-describedby='add-employment-description'>
+							<ProjectInfoModal
+								actionType={ACTION_TYPE.edit}
+								closeModal={setOpenProjectModal}
+								projectInfo={projectInfo}
+							/>
+						</Modal>
 					</div>
 				</div>
 				<div className='employment-info-company-name mt-1'>

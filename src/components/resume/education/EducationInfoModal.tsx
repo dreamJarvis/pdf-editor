@@ -268,7 +268,7 @@ export const EducationInfoModal = ({
 								color='primary'
 								onClick={addEducationInfo}
 								sx={{ marginRight: "2rem" }}>
-								{action === "ADD" ? "ADD" : "EDIT"}
+								{action}
 							</Button>
 							<Button
 								variant='contained'

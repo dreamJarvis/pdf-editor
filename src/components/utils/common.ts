@@ -4,7 +4,9 @@ import {
 	IEducationInfo,
 	IEmploymentInfo,
 	IPersonalInfo,
+	IProjectInfo,
 } from "../../services/types";
+import { store } from "../../store";
 
 export const getTotalExperienceInMonths = (
 	leavingDate: Date,
@@ -90,4 +92,44 @@ export const getInitializedEmploymentInfo = (
 		jobProfile: employmentInfo?.jobProfile ?? "",
 		noticePeriod: employmentInfo?.noticePeriod ?? "",
 	};
+};
+
+export const getInitializedProjectInfo = (
+	projectInfo: IProjectInfo | null
+): IProjectInfo => {
+	return {
+		id: projectInfo?.id ?? new Date().getDate().toString(),
+		projectTitle: projectInfo?.projectTitle ?? "personal website",
+		projectAssociation: projectInfo?.projectAssociation ?? "self-project",
+		client: projectInfo?.client ?? "self",
+		projectStatus: projectInfo?.projectStatus ?? "completed",
+		started: projectInfo?.started ?? new Date(),
+		completed: projectInfo?.completed ?? new Date(),
+		projectDetails: projectInfo?.projectDetails ?? "",
+		skillsUsed: projectInfo?.skillsUsed ?? [],
+		liveLink: projectInfo?.liveLink ?? "",
+		repositoryLink: projectInfo?.repositoryLink ?? "",
+	};
+};
+
+export const tagEmploymentEducation = () => {
+	const storeData = store.getState();
+	const employmentList = storeData?.employmentInfo.map((info) => {
+		return {
+			label: `${info.jobTitle} - ${info.companyName}`,
+			value: `${info.jobTitle} - ${info.companyName}`,
+		};
+	});
+	const educationList = storeData?.education.map((info) => {
+		return {
+			label: `${info.course} - ${info.university}`,
+			value: `${info.course} - ${info.university}`,
+		};
+	});
+	const selfProject = {
+		label: "self project",
+		value: "self project",
+	};
+
+	return [...employmentList, ...educationList, selfProject];
 };
