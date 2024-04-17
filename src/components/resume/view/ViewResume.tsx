@@ -1,7 +1,8 @@
 /** @format */
 
-import React from "react";
-
+/* 
+	TODO: create resume view
+*/
 export const ViewResume = () => {
 	return <div>ViewResume</div>;
 };
