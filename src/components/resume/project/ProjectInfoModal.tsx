@@ -15,14 +15,14 @@ import { useDispatch } from "react-redux";
 import {
 	addNewProjectData,
 	updateProjectData,
-} from "../../../services/resumeData";
+} from "../../../services/resumeReducers";
 import { IProjectInfo } from "../../../services/types";
 import {
 	getInitializedProjectInfo,
 	tagEmploymentEducation,
 } from "../../utils/common";
 import { projectInfoReducer } from "../store/projectStore";
-import { PROJECT_INFO_ACTIONS } from "../store/resumeActions";
+import { PROJECT_INFO_ACTIONS } from "../store/resumeReducerActions";
 /* 
 	TODO: add None/self option to tag project option
 */

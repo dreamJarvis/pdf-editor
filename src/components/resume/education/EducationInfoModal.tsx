@@ -16,10 +16,10 @@ import { IEducationInfo } from "../../../services/types";
 import {
 	addNewEducationData,
 	updateEducationDate,
-} from "../../../services/resumeData";
+} from "../../../services/resumeReducers";
 import { getInitializedEducationData } from "../../utils/common";
 import { educationInfoReducer } from "../store/educationStore";
-import { EDUCATION_INFO_ACTIONS } from "../store/resumeActions";
+import { EDUCATION_INFO_ACTIONS } from "../store/resumeReducerActions";
 import { EDUCATION_LEVEL, GRADING_SYSTEM } from "../../utils/constants";
 
 export const EducationInfoModal = ({

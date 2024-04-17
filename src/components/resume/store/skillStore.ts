@@ -1,7 +1,7 @@
 /** @format */
 
 import { ISkill } from "../../../services/types";
-import { SKILL_INFO_ACTIONS } from "./resumeActions";
+import { SKILL_INFO_ACTIONS } from "./resumeReducerActions";
 
 export const skillInfoReducer = (
 	state: ISkill,

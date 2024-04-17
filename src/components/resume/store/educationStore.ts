@@ -1,7 +1,7 @@
 /** @format */
 
 import { IEducationInfo } from "../../../services/types";
-import { EDUCATION_INFO_ACTIONS } from "./resumeActions";
+import { EDUCATION_INFO_ACTIONS } from "./resumeReducerActions";
 
 export const educationInfoReducer = (
 	state: IEducationInfo,

@@ -5,10 +5,13 @@ import { Button, Paper, TextField } from "@mui/material";
 import { useReducer } from "react";
 import { ISkill } from "../../../services/types";
 import { useDispatch } from "react-redux";
-import { addNewSkillData, updateSkillData } from "../../../services/resumeData";
+import {
+	addNewSkillData,
+	updateSkillData,
+} from "../../../services/resumeReducers";
 import { getInitializedSkillInfo } from "../../utils/common";
 import { skillInfoReducer } from "../store/skillStore";
-import { SKILL_INFO_ACTIONS } from "../store/resumeActions";
+import { SKILL_INFO_ACTIONS } from "../store/resumeReducerActions";
 
 export const SkillInfoModal = ({
 	setOpenSkillModal,

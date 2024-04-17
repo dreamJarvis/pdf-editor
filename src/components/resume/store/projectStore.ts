@@ -1,7 +1,7 @@
 /** @format */
 
 import { IProjectInfo } from "../../../services/types";
-import { PROJECT_INFO_ACTIONS } from "./resumeActions";
+import { PROJECT_INFO_ACTIONS } from "./resumeReducerActions";
 
 export const projectInfoReducer = (
 	state: IProjectInfo,

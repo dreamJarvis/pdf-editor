@@ -3,10 +3,10 @@
 import { Button, Paper, TextField } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../../store";
-import { addPersonalData } from "../../../services/resumeData";
+import { addPersonalData } from "../../../services/resumeReducers";
 import { useReducer } from "react";
 import { getInitializedPersonalData } from "../../utils/common";
-import { PERSONAL_INFO_ACTIONS } from "../store/resumeActions";
+import { PERSONAL_INFO_ACTIONS } from "../store/resumeReducerActions";
 import { personalInfoReducer } from "../store/personalStore";
 
 export const PersonalInfoModal = ({

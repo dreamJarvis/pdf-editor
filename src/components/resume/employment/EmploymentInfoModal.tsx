@@ -15,7 +15,7 @@ import { useDispatch } from "react-redux";
 import {
 	addNewEmploymentData,
 	updateEmploymentDate,
-} from "../../../services/resumeData";
+} from "../../../services/resumeReducers";
 import { IEmploymentInfo } from "../../../services/types";
 import {
 	getInitializedEmploymentInfo,
@@ -23,7 +23,7 @@ import {
 } from "../../utils/common";
 import { employmentInfoReducer } from "../store/employmentStore";
 import { NOTICE_PERIOD } from "../../utils/constants";
-import { EMPLOYMENT_INFO_ACTIONS } from "../store/resumeActions";
+import { EMPLOYMENT_INFO_ACTIONS } from "../store/resumeReducerActions";
 
 export const EmploymentInfoModal = ({
 	employmentInfo,

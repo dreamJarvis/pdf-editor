@@ -1,7 +1,7 @@
 /** @format */
 
 import { configureStore } from "@reduxjs/toolkit";
-import resumeDataReducer from "./services/resumeData";
+import resumeDataReducer from "./services/resumeReducers";
 
 export const store = configureStore({
 	reducer: resumeDataReducer,
