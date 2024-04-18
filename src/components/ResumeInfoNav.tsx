@@ -5,8 +5,8 @@ import { Link } from "react-router-dom";
 
 export const ResumeInfoNav = () => {
 	return (
-		<div className=' bg-slate-400 h-full basis-1/6'>
-			<nav className=''>
+		<div className=' bg-slate-500 basis-1/6 h-[100%]'>
+			<nav>
 				<ul className='mt-10 py-2'>
 					<li
 						className='personal-info m-10 p-4 bg-slate-300 drop-shadow-lg rounded-md'

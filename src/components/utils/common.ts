@@ -88,7 +88,7 @@ export const getInitializedEmploymentInfo = (
 		companyName: employmentInfo?.companyName ?? "",
 		jobTitle: employmentInfo?.jobTitle ?? "",
 		joiningDate: employmentInfo?.joiningDate ?? "",
-		leavingDate: employmentInfo?.leavingDate ?? "",
+		leavingDate: employmentInfo?.leavingDate ?? getTodaysDateISOFormat(),
 		skills: employmentInfo?.skills ?? [],
 		jobProfile: employmentInfo?.jobProfile ?? "",
 		noticePeriod: employmentInfo?.noticePeriod ?? "",
@@ -144,4 +144,16 @@ export const tagEmploymentEducation = () => {
 	};
 
 	return [...employmentList, ...educationList, selfProject];
+};
+
+export const totalWorkingExperience = () => {
+	const storeData = store.getState();
+	return storeData?.employmentInfo.reduce(
+		(curr, info) => curr + info.totalExperience,
+		0
+	);
+};
+
+export const getTodaysDateISOFormat = (): string => {
+	return new Date().toISOString().split("T")[0];
 };

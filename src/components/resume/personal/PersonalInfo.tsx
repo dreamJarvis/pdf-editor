@@ -12,15 +12,6 @@ export const PersonalInfo = () => {
 	const personalInfo = useSelector((state: RootState) => state.personalDetails);
 	const [openPersonalInfoModal, setOpenPersonalInfoModal] = useState(false);
 
-	const employmentInfo = useSelector(
-		(state: RootState) => state.employmentInfo
-	);
-
-	let totalWorkingExperience = employmentInfo.reduce(
-		(curr, info) => curr + info.totalExperience,
-		0
-	);
-
 	return (
 		<Container className='mt-20'>
 			<Box className='job-details flex flex-row justify-center'>
@@ -53,12 +44,9 @@ export const PersonalInfo = () => {
 						</div>
 					</div>
 					<Box className='employment-info-list-details flex flex-row justify-center'>
-						{personalInfo && (
-							<PersonalInfoView
-								personalInfo={personalInfo}
-								totalWorkingExperience={totalWorkingExperience}
-							/>
-						)}
+						<div className='w-5/6'>
+							{personalInfo && <PersonalInfoView personalInfo={personalInfo} />}
+						</div>
 					</Box>
 				</Paper>
 			</Box>

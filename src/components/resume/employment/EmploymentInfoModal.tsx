@@ -19,6 +19,7 @@ import {
 import { IEmploymentInfo } from "../../../services/types";
 import {
 	getInitializedEmploymentInfo,
+	getTodaysDateISOFormat,
 	getTotalExperienceInMonths,
 } from "../../utils/common";
 import { employmentInfoReducer } from "../store/employmentStore";
@@ -182,7 +183,9 @@ export const EmploymentInfoModal = ({
 									</label>
 									<input
 										type='date'
-										value={employmentData?.leavingDate}
+										value={
+											employmentData?.leavingDate ?? getTodaysDateISOFormat()
+										}
 										onChange={(e) => {
 											dispatchEmploymentData({
 												type: EMPLOYMENT_INFO_ACTIONS.ADD_ACTIONS,

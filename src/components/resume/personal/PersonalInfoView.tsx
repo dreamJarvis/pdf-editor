@@ -5,13 +5,12 @@ import { IPersonalInfo } from "../../../services/types";
 import EditIcon from "@mui/icons-material/Edit";
 import { PersonalInfoModal } from "./PersonalInfoModal";
 import { useState } from "react";
+import { totalWorkingExperience } from "../../utils/common";
 
 export const PersonalInfoView = ({
 	personalInfo,
-	totalWorkingExperience,
 }: {
 	personalInfo: IPersonalInfo;
-	totalWorkingExperience: number;
 }) => {
 	const [openPersonalInfoModal, setOpenPersonalInfoModal] = useState(false);
 
@@ -30,8 +29,10 @@ export const PersonalInfoView = ({
 	const { linkedIn, portfolio, github } = additionalInfo;
 	const { contactPhoneNumber } = contactNumbers;
 
+	const totalWorkingExperienceData = totalWorkingExperience();
+
 	return (
-		<div className='employment-info w-5/6 justify-center mb-6'>
+		<div className='employment-info justify-center mb-6'>
 			<Box className='flex flex-col items-start bg-slate-200 p-2 mt-2 mb-3 shadow-md justify-center'>
 				<div className='employment-info-job-title mt-2 flex flex-col w-[100%]'>
 					<div className='name flex flex-col text-center text-gray-600 text-pretty text-lg w-[100%] items-center justify-start'>
@@ -75,8 +76,8 @@ export const PersonalInfoView = ({
 								<a href={portfolio}>Portfolio</a> | <a href={github}>Github</a>
 							</small>
 							<small>
-								{Math.floor(totalWorkingExperience / 12)} years,{" "}
-								{Math.floor(totalWorkingExperience % 12)} moths
+								{Math.floor(totalWorkingExperienceData / 12)} years,{" "}
+								{Math.floor(totalWorkingExperienceData % 12)} moths
 							</small>
 						</div>
 						<div

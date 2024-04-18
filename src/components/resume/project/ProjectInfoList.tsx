@@ -11,9 +11,11 @@ export const ProjectInfoList = ({
 }) => {
 	return (
 		<Box className='flex flex-col items-center justify-center mt-4 p-2 mb-10'>
-			{projectsList.map((info, index) => (
-				<ProjectInfoView key={info?.id + index} projectInfo={info} />
-			))}
+			<div className='w-5/6'>
+				{projectsList.map((info, index) => (
+					<ProjectInfoView key={info?.id + index} projectInfo={info} />
+				))}
+			</div>
 		</Box>
 	);
 };

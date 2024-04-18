@@ -16,9 +16,11 @@ export const SkillInfoList = ({ skillList }: { skillList: Array<ISkill> }) => {
 					<h1 className='basis-1/5'>...</h1>
 				</div>
 
-				{skillList.map((info, index) => (
-					<SkillInfoView key={info?.id + index} skillInfo={info} />
-				))}
+				<div className='w-5/6'>
+					{skillList.map((info, index) => (
+						<SkillInfoView key={info?.id + index} skillInfo={info} />
+					))}
+				</div>
 			</Box>
 		</div>
 	);
