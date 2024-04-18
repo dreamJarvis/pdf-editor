@@ -30,31 +30,31 @@ export const getTotalExperienceInMonths = (
 };
 
 export const getInitializedPersonalData = (
-	personalInfo: IPersonalInfo
+	personalInfo: IPersonalInfo | null
 ): IPersonalInfo => {
 	return {
-		about: personalInfo.about ?? "",
-		firstName: personalInfo.firstName ?? "",
-		lastName: personalInfo.lastName ?? "",
+		about: personalInfo?.about ?? "",
+		firstName: personalInfo?.firstName ?? "",
+		lastName: personalInfo?.lastName ?? "",
 		image: "",
-		dob: personalInfo.dob ?? new Date(),
-		availableToJoin: personalInfo.availableToJoin ?? "",
+		dob: personalInfo?.dob ?? getTodaysDateISOFormat(),
+		availableToJoin: personalInfo?.availableToJoin ?? "",
 		address: {
-			street: personalInfo.address.street ?? "",
-			city: personalInfo.address.city ?? "",
-			state: personalInfo.address.state ?? "",
-			pincode: personalInfo.address.pincode ?? "",
+			street: personalInfo?.address.street ?? "",
+			city: personalInfo?.address.city ?? "",
+			state: personalInfo?.address.state ?? "",
+			pincode: personalInfo?.address.pincode ?? "",
 		},
-		email: personalInfo.email ?? "",
+		email: personalInfo?.email ?? "",
 		contactNumbers: {
-			contactPhoneNumber: personalInfo.contactNumbers.contactPhoneNumber ?? "",
-			workPhoneNumber: personalInfo.contactNumbers.workPhoneNumber ?? "",
-			homeNumber: personalInfo.contactNumbers.homeNumber ?? "",
+			contactPhoneNumber: personalInfo?.contactNumbers.contactPhoneNumber ?? "",
+			workPhoneNumber: personalInfo?.contactNumbers.workPhoneNumber ?? "",
+			homeNumber: personalInfo?.contactNumbers.homeNumber ?? "",
 		},
 		additionalInfo: {
-			linkedIn: personalInfo.additionalInfo.linkedIn ?? "",
-			portfolio: personalInfo.additionalInfo.portfolio ?? "",
-			github: personalInfo.additionalInfo.github ?? "",
+			linkedIn: personalInfo?.additionalInfo.linkedIn ?? "",
+			portfolio: personalInfo?.additionalInfo.portfolio ?? "",
+			github: personalInfo?.additionalInfo.github ?? "",
 		},
 	};
 };

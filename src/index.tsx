@@ -21,7 +21,7 @@ const root = ReactDOM.createRoot(
 
 const appRouter = createBrowserRouter([
 	{
-		path: "/",
+		path: "pdf-editor/",
 		element: <App />,
 		errorElement: <PageNotFound />,
 		children: [
