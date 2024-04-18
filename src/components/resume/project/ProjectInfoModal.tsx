@@ -23,9 +23,7 @@ import {
 } from "../../utils/common";
 import { projectInfoReducer } from "../store/projectStore";
 import { PROJECT_INFO_ACTIONS } from "../store/resumeReducerActions";
-/* 
-	TODO: add None/self option to tag project option
-*/
+
 export const ProjectInfoModal = ({
 	closeModal,
 	projectInfo,
