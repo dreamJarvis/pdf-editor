@@ -11,32 +11,32 @@ export const ResumeInfoNav = () => {
 					<li
 						className='personal-info m-10 p-4 bg-slate-300 drop-shadow-lg rounded-md'
 						data-info-type='personal'>
-						<Link to='/'>Personal</Link>
+						<Link to='pdf-editor/'>Personal</Link>
 					</li>
 					<li
 						className='education-info m-10 p-4 bg-slate-300 drop-shadow-lg rounded-md'
 						data-info-type='education'>
-						<Link to='/educational'>Education</Link>
+						<Link to='pdf-editor/educational'>Education</Link>
 					</li>
 					<li
 						className='employment-info m-10 p-4 bg-slate-300 drop-shadow-lg rounded-md'
 						data-info-type='employment'>
-						<Link to='/employment'>Employment</Link>
+						<Link to='pdf-editor/employment'>Employment</Link>
 					</li>
 					<li
 						className='project-info m-10 p-4 bg-slate-300 drop-shadow-lg rounded-md'
 						data-info-type='project'>
-						<Link to='/projects'>Projects</Link>
+						<Link to='pdf-editor/projects'>Projects</Link>
 					</li>
 					<li
 						className='skill-info m-10 p-4 bg-slate-300 drop-shadow-lg rounded-md'
 						data-info-type='skill'>
-						<Link to='/skills'>Skills</Link>
+						<Link to='pdf-editor/skills'>Skills</Link>
 					</li>
 					<li
 						className='view-resume m-10 p-4 bg-slate-300 drop-shadow-lg rounded-md'
 						data-info-type='view-resume'>
-						<Link to='/view_resume'>View</Link>
+						<Link to='pdf-editor/view_resume'>View</Link>
 					</li>
 				</ul>
 			</nav>
