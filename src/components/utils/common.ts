@@ -69,8 +69,8 @@ export const getInitializedEducationData = (
 		course: educationInfo?.course ?? "",
 		specialization: educationInfo?.specialization ?? "",
 		courseType: educationInfo?.courseType ?? "",
-		startingYear: educationInfo?.startingYear ?? "",
-		graduationYear: educationInfo?.graduationYear ?? "",
+		startingYear: educationInfo?.startingYear ?? getTodaysDateISOFormat(),
+		graduationYear: educationInfo?.graduationYear ?? getTodaysDateISOFormat(),
 		gradingSystem: educationInfo?.gradingSystem ?? "no",
 		marks: educationInfo?.marks ?? "no",
 		completed: educationInfo?.completed ?? "no",
@@ -99,13 +99,13 @@ export const getInitializedProjectInfo = (
 	projectInfo: IProjectInfo | null
 ): IProjectInfo => {
 	return {
-		id: projectInfo?.id ?? new Date().getDate().toString(),
-		projectTitle: projectInfo?.projectTitle ?? "personal website",
-		projectAssociation: projectInfo?.projectAssociation ?? "self-project",
-		client: projectInfo?.client ?? "self",
-		projectStatus: projectInfo?.projectStatus ?? "completed",
-		started: projectInfo?.started ?? "2021-05-12",
-		completed: projectInfo?.completed ?? "2021-06-23",
+		id: projectInfo?.id ?? new Date().getMilliseconds().toString(),
+		projectTitle: projectInfo?.projectTitle ?? "",
+		projectAssociation: projectInfo?.projectAssociation ?? "",
+		client: projectInfo?.client ?? "",
+		projectStatus: projectInfo?.projectStatus ?? "",
+		started: projectInfo?.started ?? getTodaysDateISOFormat(),
+		completed: projectInfo?.completed ?? getTodaysDateISOFormat(),
 		projectDetails: projectInfo?.projectDetails ?? "",
 		skillsUsed: projectInfo?.skillsUsed ?? [],
 		liveLink: projectInfo?.liveLink ?? "",
@@ -118,21 +118,23 @@ export const getInitializedSkillInfo = (skillInfo: ISkill | null): ISkill => {
 		id: skillInfo?.id ?? new Date().getMilliseconds(),
 		skill: skillInfo?.skill ?? "",
 		softwareVersion: skillInfo?.softwareVersion ?? "",
-		lastUsed: skillInfo?.lastUsed ?? "",
-		usedFrom: skillInfo?.usedFrom ?? "",
-		usedTill: skillInfo?.usedTill ?? "",
+		lastUsed: skillInfo?.lastUsed ?? getTodaysDateISOFormat(),
+		usedFrom: skillInfo?.usedFrom ?? getTodaysDateISOFormat(),
+		usedTill: skillInfo?.usedTill ?? getTodaysDateISOFormat(),
 	};
 };
 
 export const tagEmploymentEducation = () => {
 	const storeData = store.getState();
-	const employmentList = storeData?.employmentInfo.map((info) => {
-		return {
-			label: `${info.jobTitle} - ${info.companyName}`,
-			value: `${info.jobTitle} - ${info.companyName}`,
-		};
-	});
-	const educationList = storeData?.education.map((info) => {
+	const employmentList = storeData?.employmentInfo.map(
+		(info: IEmploymentInfo) => {
+			return {
+				label: `${info.jobTitle} - ${info.companyName}`,
+				value: `${info.jobTitle} - ${info.companyName}`,
+			};
+		}
+	);
+	const educationList = storeData?.education.map((info: IEducationInfo) => {
 		return {
 			label: `${info.course} - ${info.university}`,
 			value: `${info.course} - ${info.university}`,
@@ -149,7 +151,7 @@ export const tagEmploymentEducation = () => {
 export const totalWorkingExperience = () => {
 	const storeData = store.getState();
 	return storeData?.employmentInfo.reduce(
-		(curr, info) => curr + info.totalExperience,
+		(curr, info) => curr + Math.abs(info.totalExperience),
 		0
 	);
 };

@@ -1,23 +1,31 @@
 /** @format */
 
 import { createSlice } from "@reduxjs/toolkit";
+import { tempPersoanlDetails2 } from "./mock-data";
 import {
-	tempEmploymentData,
-	tempEducationData,
-	tempPersoanlDetails,
-	tempEmploymentData2,
-	tempProjetData,
-	tempProjetData2,
-	tempSkillData,
-	tempSkillData2,
-} from "./mock-data";
+	IEducationInfo,
+	IEmploymentInfo,
+	IPersonalInfo,
+	IProjectInfo,
+	ISkill,
+} from "./types";
 
-const initialState = {
-	personalDetails: tempPersoanlDetails,
-	education: [tempEducationData],
-	employmentInfo: [tempEmploymentData, tempEmploymentData2],
-	projects: [tempProjetData, tempProjetData2],
-	skills: [tempSkillData, tempSkillData2],
+/* 
+	TODO: resolve webpack issue
+	fetching data from a function in common.ts to fill personalDetails gives WEBPACK Error
+*/
+const initialState: {
+	personalDetails: IPersonalInfo;
+	education: IEducationInfo[];
+	employmentInfo: IEmploymentInfo[];
+	projects: IProjectInfo[];
+	skills: ISkill[];
+} = {
+	personalDetails: tempPersoanlDetails2, // to avoid webpack issue
+	education: [],
+	employmentInfo: [],
+	projects: [],
+	skills: [],
 };
 
 export const resumeDataSlice = createSlice({

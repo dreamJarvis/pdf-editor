@@ -23,14 +23,14 @@ export const PersonalInfo = () => {
 							</h2>
 						</div>
 						<div className='add-job p-2 m-2 basis-1/4'>
-							{!personalInfo && (
-								<Button
-									variant='contained'
-									color='success'
-									startIcon={<AddIcon />}
-									onClick={() => setOpenPersonalInfoModal(true)}
-								/>
-							)}
+							{/* {!personalInfo && ( */}
+							<Button
+								variant='contained'
+								color='success'
+								startIcon={<AddIcon />}
+								onClick={() => setOpenPersonalInfoModal(true)}
+							/>
+							{/* )} */}
 							<Modal
 								open={openPersonalInfoModal}
 								style={{ overflow: "auto", paddingBottom: "10px" }}

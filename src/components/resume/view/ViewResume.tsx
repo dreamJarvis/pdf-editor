@@ -26,60 +26,58 @@ export const ViewResume = () => {
 					<header className='flex flex-col'>
 						{<PersonalInfoView personalInfo={personalInfo} />}
 					</header>
-					<body className='flex flex-row'>
-						<Box className='flex flex-row text-center justify-center'>
-							<div className='flex flex-col'>
-								<div className=' m-2 p-2 flex flex-col text-start'>
-									<div
-										className='text-xl text-slate-700 font-sans'
-										style={{
-											borderBottom: "2px solid gray",
-										}}>
-										<h1>Work Experience</h1>
-									</div>
-									{employmentInfo.map((employmentInfo) => (
-										<EmploymentInfoView employmentInfo={employmentInfo} />
-									))}
+					<Box className='flex flex-col text-center justify-center'>
+						<div className='flex flex-col'>
+							<div className='m-2 p-2 flex flex-col text-start'>
+								<div
+									className='text-xl text-slate-700 font-sans'
+									style={{
+										borderBottom: "2px solid gray",
+									}}>
+									<h1>Work Experience</h1>
 								</div>
-								<div className='m-2 p-2 flex flex-col text-start'>
-									<div
-										className='text-xl text-slate-700 font-sans'
-										style={{
-											borderBottom: "2px solid gray",
-										}}>
-										<h1>Projects</h1>
-									</div>
-									{projectInfo.map((info) => (
-										<ProjectInfoView projectInfo={info} />
-									))}
-								</div>
-								<div className=' m-2 p-2 flex flex-col text-start'>
-									<div
-										className='text-xl text-slate-700 font-sans'
-										style={{
-											borderBottom: "2px solid gray",
-										}}>
-										<h1>Education</h1>
-									</div>
-									{educationInfo.map((info) => (
-										<EducationInfoView educationalInfo={info} />
-									))}
-								</div>
-								<div className='m-2 p-2 flex flex-col text-start'>
-									<div
-										className='text-xl text-slate-700 font-sans'
-										style={{
-											borderBottom: "2px solid gray",
-										}}>
-										<h1>Skills</h1>
-									</div>
-									{skillInfo.map((info) => (
-										<SkillInfoView skillInfo={info} />
-									))}
-								</div>
+								{employmentInfo.map((employmentInfo) => (
+									<EmploymentInfoView employmentInfo={employmentInfo} />
+								))}
 							</div>
-						</Box>
-					</body>
+							<div className='m-2 p-2 flex flex-col text-start'>
+								<div
+									className='text-xl text-slate-700 font-sans'
+									style={{
+										borderBottom: "2px solid gray",
+									}}>
+									<h1>Projects</h1>
+								</div>
+								{projectInfo.map((info) => (
+									<ProjectInfoView projectInfo={info} />
+								))}
+							</div>
+							<div className=' m-2 p-2 flex flex-col text-start'>
+								<div
+									className='text-xl text-slate-700 font-sans'
+									style={{
+										borderBottom: "2px solid gray",
+									}}>
+									<h1>Education</h1>
+								</div>
+								{educationInfo.map((info) => (
+									<EducationInfoView educationalInfo={info} />
+								))}
+							</div>
+							<div className='m-2 p-2 flex flex-col text-start'>
+								<div
+									className='text-xl text-slate-700 font-sans'
+									style={{
+										borderBottom: "2px solid gray",
+									}}>
+									<h1>Skills</h1>
+								</div>
+								{skillInfo.map((info) => (
+									<SkillInfoView skillInfo={info} />
+								))}
+							</div>
+						</div>
+					</Box>
 				</div>
 			</Paper>
 		</Container>

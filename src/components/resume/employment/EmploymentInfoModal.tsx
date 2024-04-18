@@ -110,6 +110,7 @@ export const EmploymentInfoModal = ({
 										type: EMPLOYMENT_INFO_ACTIONS.ADD_ACTIONS,
 										payload: {
 											currentEmployer: e.target.value === "yes",
+											leavingDate: getTodaysDateISOFormat(),
 										},
 									});
 								}}

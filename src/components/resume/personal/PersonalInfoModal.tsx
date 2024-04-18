@@ -1,6 +1,6 @@
 /** @format */
 
-import { Button, Paper, TextField } from "@mui/material";
+import { Button, MenuItem, Paper, TextField } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../../store";
 import { addPersonalData } from "../../../services/resumeReducers";
@@ -8,6 +8,7 @@ import { useReducer } from "react";
 import { getInitializedPersonalData } from "../../utils/common";
 import { PERSONAL_INFO_ACTIONS } from "../store/resumeReducerActions";
 import { personalInfoReducer } from "../store/personalStore";
+import { NOTICE_PERIOD } from "../../utils/constants";
 
 export const PersonalInfoModal = ({
 	setOpenPersonalInfoModal,
@@ -153,38 +154,6 @@ export const PersonalInfoModal = ({
 									value={personalData.address.pincode}
 								/>
 							</div>
-							<div className='pincode m-2'>
-								<TextField
-									id='email'
-									label='email'
-									type='email'
-									onChange={(e) => {
-										dispatchPersonalData({
-											type: PERSONAL_INFO_ACTIONS.ADD_PERSONAL,
-											payload: { email: e.target.value },
-										});
-									}}
-									required
-									variant='outlined'
-									value={personalData.email}
-								/>
-							</div>
-							<div className='pincode m-2'>
-								<TextField
-									id='availabel to join'
-									label='availability'
-									type='text'
-									onChange={(e) => {
-										dispatchPersonalData({
-											type: PERSONAL_INFO_ACTIONS.ADD_PERSONAL,
-											payload: { availableToJoin: e.target.value },
-										});
-									}}
-									required
-									variant='outlined'
-									value={personalData.availableToJoin}
-								/>
-							</div>
 						</div>
 						<div className='personal-number flex flex-wrap justify-center mb-4 w-[70%]'>
 							<div className='contact-number m-2'>
@@ -301,6 +270,31 @@ export const PersonalInfoModal = ({
 									placeholder='tell us about yourself...'
 									required
 								/>
+							</div>
+						</div>
+						<div className='personal-info flex justify-center mb-4 w-[70%]'>
+							<div className='pincode m-2 w-[88%]'>
+								<TextField
+									id='availabelity'
+									select
+									fullWidth
+									label='availabel to join'
+									value={personalData?.availableToJoin}
+									defaultValue={personalData?.availableToJoin}
+									onChange={(e) => {
+										dispatchPersonalData({
+											type: PERSONAL_INFO_ACTIONS.ADD_PERSONAL,
+											payload: {
+												availableToJoin: e.target.value,
+											},
+										});
+									}}>
+									{NOTICE_PERIOD.map((option) => (
+										<MenuItem key={option.value} value={option.value}>
+											{option.label}
+										</MenuItem>
+									))}
+								</TextField>
 							</div>
 						</div>
 						<div className='employment-type w-full flex flex-row justify-center mb-6 mt-7'>
