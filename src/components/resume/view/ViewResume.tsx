@@ -1,6 +1,6 @@
 /** @format */
 
-import { Box, Container, Paper } from "@mui/material";
+import { Box, Button, Container, Paper } from "@mui/material";
 import { RootState } from "../../../store";
 import { useSelector } from "react-redux";
 import { EmploymentInfoView } from "../employment/EmploymentInfoView";
@@ -8,8 +8,18 @@ import { ProjectInfoView } from "../project/ProjectInfoView";
 import { EducationInfoView } from "../education/EducationInfoView";
 import { PersonalInfoView } from "../personal/PersonalInfoView";
 import { SkillInfoView } from "../skills/SkillInfoView";
+import { useRef } from "react";
+import html2pdf from "html2pdf.js";
 
-export const ViewResume = () => {
+const options = {
+	filename: "resume.pdf",
+	margin: 1,
+	image: { type: "jpeg", quality: 0.98 },
+	html2canvas: { scale: 2 },
+	jsPDF: { unit: "in", format: "a2", orientation: "p" },
+};
+
+export const ViewResume = ({ contentRef }: { contentRef: any }) => {
 	const employmentInfo = useSelector(
 		(state: RootState) => state.employmentInfo
 	);
@@ -20,9 +30,9 @@ export const ViewResume = () => {
 	const skillInfo = useSelector((state: RootState) => state.skills);
 
 	return (
-		<Container className=' bg-red-100'>
-			<Paper className='m-10'>
-				<div className='p-4 mt-14 mb-14'>
+		<div ref={contentRef}>
+			<Paper className='mt-10'>
+				<div className='p-4 mt-10 mb-4'>
 					<header className='flex flex-col'>
 						{<PersonalInfoView personalInfo={personalInfo} />}
 					</header>
@@ -30,7 +40,7 @@ export const ViewResume = () => {
 						<div className='flex flex-col'>
 							<div className='m-2 p-2 flex flex-col text-start'>
 								<div
-									className='text-xl text-slate-700 font-sans'
+									className='text-xl text-slate-700 font-sans p-2'
 									style={{
 										borderBottom: "2px solid gray",
 									}}>
@@ -42,7 +52,7 @@ export const ViewResume = () => {
 							</div>
 							<div className='m-2 p-2 flex flex-col text-start'>
 								<div
-									className='text-xl text-slate-700 font-sans'
+									className='text-xl text-slate-700 font-sans p-2'
 									style={{
 										borderBottom: "2px solid gray",
 									}}>
@@ -54,7 +64,7 @@ export const ViewResume = () => {
 							</div>
 							<div className=' m-2 p-2 flex flex-col text-start'>
 								<div
-									className='text-xl text-slate-700 font-sans'
+									className='text-xl text-slate-700 font-sans p-2'
 									style={{
 										borderBottom: "2px solid gray",
 									}}>
@@ -66,7 +76,7 @@ export const ViewResume = () => {
 							</div>
 							<div className='m-2 p-2 flex flex-col text-start'>
 								<div
-									className='text-xl text-slate-700 font-sans'
+									className='text-xl text-slate-700 font-sans p-2'
 									style={{
 										borderBottom: "2px solid gray",
 									}}>
@@ -80,11 +90,17 @@ export const ViewResume = () => {
 					</Box>
 				</div>
 			</Paper>
-		</Container>
+		</div>
+
 	);
 };
+
 /* 
-linkedin -> https://www.linkedin.com/in/tarun-jha-60242b193/
-portfolio -> https://dreamjarvis.github.io/portfolio-react/
-leetocode -> https://leetcode.com/theTrojanHorse/
+		// <Container className=' bg-red-100'>
+		// </Container>
+
+					<div className='mb-4'>
+				<Button variant="contained" color='success' size='large' onClick={convertToPdf}>Convert to PDF</Button>
+			</div>
+
 */

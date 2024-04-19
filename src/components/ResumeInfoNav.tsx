@@ -34,9 +34,9 @@ export const ResumeInfoNav = () => {
 						<Link to='pdf-editor/skills'>Skills</Link>
 					</li>
 					<li
-						className='view-resume m-10 p-4 bg-slate-300 drop-shadow-lg rounded-md'
-						data-info-type='view-resume'>
-						<Link to='pdf-editor/view_resume'>View</Link>
+						className='view-resume-pdf m-10 p-4 bg-slate-300 drop-shadow-lg rounded-md'
+						data-info-type='view-pdf'>
+						<Link to='pdf-editor/convert_pdf'>PDF</Link>
 					</li>
 				</ul>
 			</nav>

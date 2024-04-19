@@ -1,7 +1,6 @@
 /** @format */
 
 import { createSlice } from "@reduxjs/toolkit";
-import { tempPersoanlDetails2 } from "./mock-data";
 import {
 	IEducationInfo,
 	IEmploymentInfo,
@@ -9,6 +8,7 @@ import {
 	IProjectInfo,
 	ISkill,
 } from "./types";
+import { tempPersoanlDetails } from "./constants";
 
 /* 
 	TODO: resolve webpack issue
@@ -21,7 +21,7 @@ const initialState: {
 	projects: IProjectInfo[];
 	skills: ISkill[];
 } = {
-	personalDetails: tempPersoanlDetails2, // to avoid webpack issue
+	personalDetails: tempPersoanlDetails, // to avoid webpack issue
 	education: [],
 	employmentInfo: [],
 	projects: [],

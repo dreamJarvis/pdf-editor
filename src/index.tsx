@@ -14,6 +14,7 @@ import App from "./App";
 import "./index.css";
 import { ProjectInfo } from "./components/resume/project/ProjectInfo";
 import { SkillInfo } from "./components/resume/skills/SkillInfo";
+import { ConvertToPDF } from "./components/resume/view/ConvertToPDF";
 
 const root = ReactDOM.createRoot(
 	document.getElementById("root") as HTMLElement
@@ -46,9 +47,9 @@ const appRouter = createBrowserRouter([
 				element: <SkillInfo />,
 			},
 			{
-				path: "pdf-editor/view_resume",
-				element: <ViewResume />,
-			},
+				path: "pdf-editor/convert_pdf",
+				element: <ConvertToPDF />
+			}
 		],
 	},
 ]);
