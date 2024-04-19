@@ -13,20 +13,12 @@ export const getTotalExperienceInMonths = (
 	leavingDate: Date,
 	joiningDate: Date
 ) => {
-	const totalDurationOfMonths =
-		(leavingDate ? leavingDate.getMonth() : 0) + (12 - joiningDate?.getMonth());
-	const totalDurationYears = Math.floor(totalDurationOfMonths / 12);
-
-	let totalEmploymentDurationMonths = Math.floor(totalDurationOfMonths % 12);
-	const totalEmploymentDurationYears =
-		(leavingDate ? leavingDate.getFullYear() : 0) -
-		joiningDate?.getFullYear() -
-		1 +
-		totalDurationYears;
-
-	totalEmploymentDurationMonths += 12 * totalEmploymentDurationYears;
-
-	return totalEmploymentDurationMonths;
+	if (joiningDate.getFullYear() === leavingDate.getFullYear())
+		return Math.abs(leavingDate.getMonth() - joiningDate.getMonth());
+	return (
+		12 * Math.abs(leavingDate.getFullYear() - joiningDate.getFullYear()) +
+		leavingDate.getMonth()
+	);
 };
 
 export const getInitializedPersonalData = (

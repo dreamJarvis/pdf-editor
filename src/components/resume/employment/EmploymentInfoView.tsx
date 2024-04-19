@@ -8,9 +8,6 @@ import { ACTION_TYPE } from "../../utils/constants";
 import { getInitializedEmploymentInfo } from "../../utils/common";
 import { useState } from "react";
 
-/* 
-	TODO: edit option
-*/
 export const EmploymentInfoView = ({
 	employmentInfo,
 }: {

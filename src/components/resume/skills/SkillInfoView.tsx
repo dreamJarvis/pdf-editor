@@ -6,20 +6,18 @@ import EditIcon from "@mui/icons-material/Edit";
 import { SkillInfoModal } from "./SkillInfoModal";
 import { ACTION_TYPE } from "../../utils/constants";
 import { useState } from "react";
+import { getTotalExperienceInMonths } from "../../utils/common";
 
 export const SkillInfoView = ({ skillInfo }: { skillInfo: ISkill }) => {
 	const { skill, softwareVersion, lastUsed, usedFrom, usedTill } = skillInfo;
 	const [skillModal, setOpenSkillModal] = useState(false);
 
 	const lastUsedYYMMDD = new Date(lastUsed);
-	const usedTillYYMMDD = new Date(usedTill);
 	const usedFromYYMMDD = new Date(usedFrom);
-	const totalExperienceMonths =
-		usedTillYYMMDD.getMonth() + usedFromYYMMDD.getMonth();
-	const totalExperienceYears =
-		usedTillYYMMDD.getFullYear() -
-		usedFromYYMMDD.getFullYear() +
-		Math.floor(totalExperienceMonths / 12);
+	const getTotalExpMonths = getTotalExperienceInMonths(
+		lastUsedYYMMDD,
+		usedFromYYMMDD
+	);
 
 	return (
 		<div className='employment-info'>
@@ -37,7 +35,8 @@ export const SkillInfoView = ({ skillInfo }: { skillInfo: ISkill }) => {
 						</div>
 						<div className='experience'>
 							<h1 className='text-base'>
-								{totalExperienceYears} years {totalExperienceMonths} months
+								{Math.floor(getTotalExpMonths / 12)} years{" "}
+								{Math.floor(getTotalExpMonths % 12)} months
 							</h1>
 						</div>
 						<div className='experience'>
