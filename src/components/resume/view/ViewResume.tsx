@@ -1,6 +1,6 @@
 /** @format */
 
-import { Box, Button, Container, Paper } from "@mui/material";
+import { Box, Paper } from "@mui/material";
 import { RootState } from "../../../store";
 import { useSelector } from "react-redux";
 import { EmploymentInfoView } from "../employment/EmploymentInfoView";
@@ -8,16 +8,6 @@ import { ProjectInfoView } from "../project/ProjectInfoView";
 import { EducationInfoView } from "../education/EducationInfoView";
 import { PersonalInfoView } from "../personal/PersonalInfoView";
 import { SkillInfoView } from "../skills/SkillInfoView";
-import { useRef } from "react";
-import html2pdf from "html2pdf.js";
-
-const options = {
-	filename: "resume.pdf",
-	margin: 1,
-	image: { type: "jpeg", quality: 0.98 },
-	html2canvas: { scale: 2 },
-	jsPDF: { unit: "in", format: "a2", orientation: "p" },
-};
 
 export const ViewResume = ({ contentRef }: { contentRef: any }) => {
 	const employmentInfo = useSelector(
@@ -30,7 +20,7 @@ export const ViewResume = ({ contentRef }: { contentRef: any }) => {
 	const skillInfo = useSelector((state: RootState) => state.skills);
 
 	return (
-		<div ref={contentRef}>
+		<div ref={contentRef} className="bg-red-100">
 			<Paper className='mt-10'>
 				<div className='p-4 mt-10 mb-4'>
 					<header className='flex flex-col'>
@@ -94,13 +84,3 @@ export const ViewResume = ({ contentRef }: { contentRef: any }) => {
 
 	);
 };
-
-/* 
-		// <Container className=' bg-red-100'>
-		// </Container>
-
-					<div className='mb-4'>
-				<Button variant="contained" color='success' size='large' onClick={convertToPdf}>Convert to PDF</Button>
-			</div>
-
-*/

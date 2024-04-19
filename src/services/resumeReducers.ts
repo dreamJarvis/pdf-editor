@@ -1,6 +1,7 @@
 /** @format */
 
 import { createSlice } from "@reduxjs/toolkit";
+import { tempPersoanlDetails } from "./constants";
 import {
 	IEducationInfo,
 	IEmploymentInfo,
@@ -8,7 +9,6 @@ import {
 	IProjectInfo,
 	ISkill,
 } from "./types";
-import { tempPersoanlDetails } from "./constants";
 
 /* 
 	TODO: resolve webpack issue
