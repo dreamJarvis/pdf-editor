@@ -44,9 +44,12 @@ export const PersonalInfo = () => {
 					</div>
 					<Box className='employment-info-list-details flex flex-row justify-center'>
 						<div className='w-5/6'>
-							{personalInfo && <PersonalInfoView
-								showEdit={EDIT_MODAL_ACTION_TYPE.visible}
-								personalInfo={personalInfo} />}
+							{personalInfo && (
+								<PersonalInfoView
+									showEdit={EDIT_MODAL_ACTION_TYPE.visible}
+									personalInfo={personalInfo}
+								/>
+							)}
 						</div>
 					</Box>
 				</Paper>

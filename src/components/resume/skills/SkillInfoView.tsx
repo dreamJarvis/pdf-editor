@@ -4,11 +4,18 @@ import { Box, Button, Modal } from "@mui/material";
 import { ISkill } from "../../../services/types";
 import EditIcon from "@mui/icons-material/Edit";
 import { SkillInfoModal } from "./SkillInfoModal";
-import { ACTION_TYPE } from "../../utils/constants";
+import { ACTION_TYPE, EDIT_MODAL_ACTION_TYPE } from "../../utils/constants";
 import { useState } from "react";
 import { getTotalExperienceInMonths } from "../../utils/common";
+import { EditModal } from "../../common/EditModal";
 
-export const SkillInfoView = ({ skillInfo, showEdit }: { skillInfo: ISkill; showEdit: string }) => {
+export const SkillInfoView = ({
+	skillInfo,
+	showEdit,
+}: {
+	skillInfo: ISkill;
+	showEdit: string;
+}) => {
 	const { skill, softwareVersion, lastUsed, usedFrom } = skillInfo;
 	const [skillModal, setOpenSkillModal] = useState(false);
 
@@ -39,25 +46,17 @@ export const SkillInfoView = ({ skillInfo, showEdit }: { skillInfo: ISkill; show
 								{Math.floor(getTotalExpMonths % 12)} months
 							</h1>
 						</div>
-						{showEdit === "VISIBLE" && <div className='experience'>
-							<Button
-								startIcon={<EditIcon />}
-								color='success'
-								onClick={() => setOpenSkillModal(true)}
-							/>
-							<Modal
-								style={{ overflow: "auto", paddingBottom: "10px" }}
-								open={skillModal}
-								onClose={() => setOpenSkillModal(false)}
-								aria-labelledby='add-employment-detail-modal'
-								aria-describedby='add-employment-description'>
+						{showEdit === EDIT_MODAL_ACTION_TYPE.visible && (
+							<EditModal
+								openModal={skillModal}
+								setOpenModal={setOpenSkillModal}>
 								<SkillInfoModal
 									actionType={ACTION_TYPE.edit}
 									skillInfo={skillInfo}
 									setOpenSkillModal={setOpenSkillModal}
 								/>
-							</Modal>
-						</div>}
+							</EditModal>
+						)}
 					</div>
 				</div>
 			</Box>

@@ -5,14 +5,15 @@ import { IProjectInfo } from "../../../services/types";
 import EditIcon from "@mui/icons-material/Edit";
 import { ProjectInfoModal } from "./ProjectInfoModal";
 import { useState } from "react";
-import { ACTION_TYPE } from "../../utils/constants";
+import { ACTION_TYPE, EDIT_MODAL_ACTION_TYPE } from "../../utils/constants";
+import { EditModal } from "../../common/EditModal";
 
 export const ProjectInfoView = ({
 	projectInfo,
 	showEdit,
 }: {
 	projectInfo: IProjectInfo;
-	showEdit: string
+	showEdit: string;
 }) => {
 	const {
 		projectTitle,
@@ -38,25 +39,17 @@ export const ProjectInfoView = ({
 							{projectTitle} ({projectStatus})
 						</h1>
 					</div>
-					{showEdit === "VISIBLE" && <div className='flex flex-col w-[100%] items-end basis-1/6'>
-						<Button
-							startIcon={<EditIcon />}
-							color='success'
-							onClick={() => setOpenProjectModal(true)}
-						/>
-						<Modal
-							style={{ overflow: "auto", paddingBottom: "10px" }}
-							open={openProjectModal}
-							onClose={() => setOpenProjectModal(false)}
-							aria-labelledby='add-employment-detail-modal'
-							aria-describedby='add-employment-description'>
+					{showEdit === EDIT_MODAL_ACTION_TYPE.visible && (
+						<EditModal
+							openModal={openProjectModal}
+							setOpenModal={setOpenProjectModal}>
 							<ProjectInfoModal
 								actionType={ACTION_TYPE.edit}
 								closeModal={setOpenProjectModal}
 								projectInfo={projectInfo}
 							/>
-						</Modal>
-					</div>}
+						</EditModal>
+					)}
 				</div>
 				<div className='employment-info-company-name mt-1'>
 					<b>{client}</b>

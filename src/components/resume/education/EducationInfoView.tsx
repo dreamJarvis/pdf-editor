@@ -5,14 +5,15 @@ import { Box, Button, Modal } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
 import { EducationInfoModal } from "./EducationInfoModal";
 import { getInitializedEducationData } from "../../utils/common";
-import { ACTION_TYPE } from "../../utils/constants";
+import { ACTION_TYPE, EDIT_MODAL_ACTION_TYPE } from "../../utils/constants";
+import { EditModal } from "../../common/EditModal";
 
 export const EducationInfoView = ({
 	educationalInfo,
-	showEdit
+	showEdit,
 }: {
 	educationalInfo: IEducationInfo;
-	showEdit: string
+	showEdit: string;
 }) => {
 	const {
 		university,
@@ -38,25 +39,17 @@ export const EducationInfoView = ({
 							{course} ({specialization})
 						</h1>
 					</div>
-					{showEdit === 'VISIBLE' && <div className='flex flex-col w-[100%] items-end basis-1/6'>
-						<Button
-							startIcon={<EditIcon />}
-							color='success'
-							onClick={() => setOpenEducationModal(true)}
-						/>
-						<Modal
-							open={openEducationModal}
-							style={{ overflow: "auto", paddingBottom: "10px" }}
-							onClose={() => setOpenEducationModal(false)}
-							aria-labelledby='add-employment-detail-modal'
-							aria-describedby='add-employment-description'>
+					{showEdit === EDIT_MODAL_ACTION_TYPE.visible && (
+						<EditModal
+							openModal={openEducationModal}
+							setOpenModal={setOpenEducationModal}>
 							<EducationInfoModal
 								action={ACTION_TYPE.edit}
 								educationInfo={getInitializedEducationData(educationalInfo)}
 								setOpenEducationModal={setOpenEducationModal}
 							/>
-						</Modal>
-					</div>}
+						</EditModal>
+					)}
 				</div>
 				<div className='employment-info-company-name mt-1'>
 					<b>{university}</b>

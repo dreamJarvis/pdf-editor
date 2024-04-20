@@ -57,14 +57,14 @@ export const NOTICE_PERIOD = [
 	},
 ];
 
-export const ACTION_TYPE = { add: "ADD", edit: "EDIT", delete: "DELETE" };
-
-export const EDIT_MODAL_ACTION_TYPE = { visible: "VISIBLE", hide: "HIDE" };
-
 export const html2pdfOptions = {
 	filename: "resume.pdf",
 	margin: 1,
 	image: { type: "jpeg", quality: 0.98 },
 	html2canvas: { scale: 2 },
-	jsPDF: { unit: "in", format: "a1", orientation: "p" },
+	jsPDF: { unit: "in", format: "a2", orientation: "p" },
 };
+
+export const ACTION_TYPE = { add: "ADD", edit: "EDIT", delete: "DELETE" };
+
+export const EDIT_MODAL_ACTION_TYPE = { visible: "VISIBLE", hide: "HIDE" };

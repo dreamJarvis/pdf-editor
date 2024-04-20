@@ -1,15 +1,16 @@
 /** @format */
 
-import { Box, Button, Modal } from "@mui/material";
+import { Box } from "@mui/material";
 import { IPersonalInfo } from "../../../services/types";
-import EditIcon from "@mui/icons-material/Edit";
 import { PersonalInfoModal } from "./PersonalInfoModal";
 import { useState } from "react";
 import { totalWorkingExperience } from "../../utils/common";
+import { EditModal } from "../../common/EditModal";
+import { EDIT_MODAL_ACTION_TYPE } from "../../utils/constants";
 
 export const PersonalInfoView = ({
 	personalInfo,
-	showEdit
+	showEdit,
 }: {
 	personalInfo: IPersonalInfo;
 	showEdit: string;
@@ -38,31 +39,21 @@ export const PersonalInfoView = ({
 			<Box className='flex flex-col items-start bg-slate-200 p-2 mt-2 mb-3 shadow-md justify-center'>
 				<div className='employment-info-job-title mt-2 flex flex-col w-[100%]'>
 					<div className='name flex flex-col text-center text-gray-600 text-pretty text-lg w-[100%] items-center justify-start'>
-						{/* <div className='w-fit h-fit'>
-							<img src={image} alt='user' />
-						</div> */}
 						<div className='flex flex-row'>
 							<div>
 								<h1>
 									{firstName.toUpperCase()} {lastName.toUpperCase()}
 								</h1>
 							</div>
-							{showEdit === 'VISIBLE' && <div>
-								<Button
-									startIcon={<EditIcon />}
-									color='success'
-									onClick={() => setOpenPersonalInfoModal(true)}
-								/>
-								<Modal
-									open={openPersonalInfoModal}
-									onClose={() => setOpenPersonalInfoModal(false)}
-									aria-labelledby='add-personal-detail-modal'
-									aria-describedby='add-personal-description'>
+							{showEdit === EDIT_MODAL_ACTION_TYPE.visible && (
+								<EditModal
+									openModal={openPersonalInfoModal}
+									setOpenModal={setOpenPersonalInfoModal}>
 									<PersonalInfoModal
 										setOpenPersonalInfoModal={setOpenPersonalInfoModal}
 									/>
-								</Modal>
-							</div>}
+								</EditModal>
+							)}
 						</div>
 						<div className='w-[90%] mb-4 mt-2'>
 							<small>{about}</small>

@@ -21,11 +21,16 @@ export const ViewResume = ({ contentRef }: { contentRef: any }) => {
 	const skillInfo = useSelector((state: RootState) => state.skills);
 
 	return (
-		<div ref={contentRef} className="bg-red-100">
+		<div ref={contentRef} className='bg-red-100'>
 			<Paper className='mt-10'>
 				<div className='p-4 mt-10 mb-4'>
 					<header className='flex flex-col'>
-						{<PersonalInfoView showEdit={EDIT_MODAL_ACTION_TYPE.hide} personalInfo={personalInfo} />}
+						{
+							<PersonalInfoView
+								showEdit={EDIT_MODAL_ACTION_TYPE.hide}
+								personalInfo={personalInfo}
+							/>
+						}
 					</header>
 					<Box className='flex flex-col text-center justify-center'>
 						<div className='flex flex-col'>
@@ -40,7 +45,8 @@ export const ViewResume = ({ contentRef }: { contentRef: any }) => {
 								{employmentInfo.map((employmentInfo) => (
 									<EmploymentInfoView
 										showEdit={EDIT_MODAL_ACTION_TYPE.hide}
-										employmentInfo={employmentInfo} />
+										employmentInfo={employmentInfo}
+									/>
 								))}
 							</div>
 							<div className='m-2 p-2 flex flex-col text-start'>
@@ -54,7 +60,8 @@ export const ViewResume = ({ contentRef }: { contentRef: any }) => {
 								{projectInfo.map((info) => (
 									<ProjectInfoView
 										showEdit={EDIT_MODAL_ACTION_TYPE.hide}
-										projectInfo={info} />
+										projectInfo={info}
+									/>
 								))}
 							</div>
 							<div className=' m-2 p-2 flex flex-col text-start'>
@@ -68,7 +75,8 @@ export const ViewResume = ({ contentRef }: { contentRef: any }) => {
 								{educationInfo.map((info) => (
 									<EducationInfoView
 										showEdit={EDIT_MODAL_ACTION_TYPE.hide}
-										educationalInfo={info} />
+										educationalInfo={info}
+									/>
 								))}
 							</div>
 							<div className='m-2 p-2 flex flex-col text-start'>
@@ -82,7 +90,8 @@ export const ViewResume = ({ contentRef }: { contentRef: any }) => {
 								{skillInfo.map((info) => (
 									<SkillInfoView
 										showEdit={EDIT_MODAL_ACTION_TYPE.hide}
-										skillInfo={info} />
+										skillInfo={info}
+									/>
 								))}
 							</div>
 						</div>
@@ -90,6 +99,5 @@ export const ViewResume = ({ contentRef }: { contentRef: any }) => {
 				</div>
 			</Paper>
 		</div>
-
 	);
 };
