@@ -9,8 +9,10 @@ import { ACTION_TYPE } from "../../utils/constants";
 
 export const ProjectInfoView = ({
 	projectInfo,
+	showEdit,
 }: {
 	projectInfo: IProjectInfo;
+	showEdit: string
 }) => {
 	const {
 		projectTitle,
@@ -36,7 +38,7 @@ export const ProjectInfoView = ({
 							{projectTitle} ({projectStatus})
 						</h1>
 					</div>
-					<div className='flex flex-col w-[100%] items-end basis-1/6'>
+					{showEdit === "VISIBLE" && <div className='flex flex-col w-[100%] items-end basis-1/6'>
 						<Button
 							startIcon={<EditIcon />}
 							color='success'
@@ -54,7 +56,7 @@ export const ProjectInfoView = ({
 								projectInfo={projectInfo}
 							/>
 						</Modal>
-					</div>
+					</div>}
 				</div>
 				<div className='employment-info-company-name mt-1'>
 					<b>{client}</b>

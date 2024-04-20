@@ -1,7 +1,7 @@
 /** @format */
 
 import { createSlice } from "@reduxjs/toolkit";
-import { tempPersoanlDetails } from "./constants";
+// import { tempPersoanlDetails } from "./constants";
 import {
 	IEducationInfo,
 	IEmploymentInfo,
@@ -9,6 +9,17 @@ import {
 	IProjectInfo,
 	ISkill,
 } from "./types";
+import {
+	tempEducationData,
+	tempEducationData2,
+	tempEmploymentData,
+	tempEmploymentData2,
+	tempPersoanlDetails,
+	tempProjetData,
+	tempProjetData2,
+	tempSkillData,
+	tempSkillData2,
+} from "./mock-data";
 
 /* 
 	TODO: resolve webpack issue
@@ -22,10 +33,10 @@ const initialState: {
 	skills: ISkill[];
 } = {
 	personalDetails: tempPersoanlDetails, // to avoid webpack issue
-	education: [],
-	employmentInfo: [],
-	projects: [],
-	skills: [],
+	education: [tempEducationData, tempEducationData2],
+	employmentInfo: [tempEmploymentData, tempEmploymentData2],
+	projects: [tempProjetData, tempProjetData2],
+	skills: [tempSkillData, tempSkillData2],
 };
 
 export const resumeDataSlice = createSlice({

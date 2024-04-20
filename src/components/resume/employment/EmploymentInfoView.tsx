@@ -10,8 +10,10 @@ import { useState } from "react";
 
 export const EmploymentInfoView = ({
 	employmentInfo,
+	showEdit
 }: {
 	employmentInfo: IEmploymentInfo;
+	showEdit: string
 }) => {
 	const {
 		companyName,
@@ -46,25 +48,27 @@ export const EmploymentInfoView = ({
 					<div className='text-center text-gray-600 text-pretty text-lg basis-5/6 w-[100%] flex flex-col items-start'>
 						<h1>{jobTitle}</h1>
 					</div>
-					<div className='flex flex-col w-[100%] items-end basis-1/6'>
-						<Button
-							startIcon={<EditIcon />}
-							color='success'
-							onClick={() => setOpenEmploymentModal(true)}
-						/>
-						<Modal
-							open={openEmploymentModal}
-							style={{ overflow: "auto", paddingBottom: "10px" }}
-							onClose={() => setOpenEmploymentModal(false)}
-							aria-labelledby='add-employment-detail-modal'
-							aria-describedby='add-employment-description'>
-							<EmploymentInfoModal
-								employmentInfo={getInitializedEmploymentInfo(employmentInfo)}
-								action={ACTION_TYPE.edit}
-								closeModal={setOpenEmploymentModal}
+					{
+						showEdit === "VISIBLE" && <div className='flex flex-col w-[100%] items-end basis-1/6'>
+							<Button
+								startIcon={<EditIcon />}
+								color='success'
+								onClick={() => setOpenEmploymentModal(true)}
 							/>
-						</Modal>
-					</div>
+							<Modal
+								open={openEmploymentModal}
+								style={{ overflow: "auto", paddingBottom: "10px" }}
+								onClose={() => setOpenEmploymentModal(false)}
+								aria-labelledby='add-employment-detail-modal'
+								aria-describedby='add-employment-description'>
+								<EmploymentInfoModal
+									employmentInfo={getInitializedEmploymentInfo(employmentInfo)}
+									action={ACTION_TYPE.edit}
+									closeModal={setOpenEmploymentModal}
+								/>
+							</Modal>
+						</div>
+					}
 				</div>
 				<div className='employment-info-company-name mt-1'>
 					<b>{companyName}</b>

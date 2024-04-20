@@ -3,6 +3,7 @@
 import React from "react";
 import { IEducationInfo } from "../../../services/types";
 import { EducationInfoView } from "./EducationInfoView";
+import { EDIT_MODAL_ACTION_TYPE } from "../../utils/constants";
 
 export const EducationInfoList = ({
 	educationalInfoList,
@@ -14,7 +15,9 @@ export const EducationInfoList = ({
 			<div className='w-5/6'>
 				{educationalInfoList.length > 0 &&
 					educationalInfoList.map((info, id) => (
-						<EducationInfoView key={id} educationalInfo={info} />
+						<EducationInfoView
+							showEdit={EDIT_MODAL_ACTION_TYPE.visible}
+							key={id} educationalInfo={info} />
 					))}
 			</div>
 		</div>

@@ -7,6 +7,7 @@ import { useSelector } from "react-redux";
 import { useState } from "react";
 import { PersonalInfoModal } from "./PersonalInfoModal";
 import { PersonalInfoView } from "./PersonalInfoView";
+import { EDIT_MODAL_ACTION_TYPE } from "../../utils/constants";
 
 export const PersonalInfo = () => {
 	const personalInfo = useSelector((state: RootState) => state.personalDetails);
@@ -43,7 +44,9 @@ export const PersonalInfo = () => {
 					</div>
 					<Box className='employment-info-list-details flex flex-row justify-center'>
 						<div className='w-5/6'>
-							{personalInfo && <PersonalInfoView personalInfo={personalInfo} />}
+							{personalInfo && <PersonalInfoView
+								showEdit={EDIT_MODAL_ACTION_TYPE.visible}
+								personalInfo={personalInfo} />}
 						</div>
 					</Box>
 				</Paper>

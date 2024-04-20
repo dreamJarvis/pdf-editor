@@ -8,6 +8,7 @@ import { ProjectInfoView } from "../project/ProjectInfoView";
 import { EducationInfoView } from "../education/EducationInfoView";
 import { PersonalInfoView } from "../personal/PersonalInfoView";
 import { SkillInfoView } from "../skills/SkillInfoView";
+import { EDIT_MODAL_ACTION_TYPE } from "../../utils/constants";
 
 export const ViewResume = ({ contentRef }: { contentRef: any }) => {
 	const employmentInfo = useSelector(
@@ -24,7 +25,7 @@ export const ViewResume = ({ contentRef }: { contentRef: any }) => {
 			<Paper className='mt-10'>
 				<div className='p-4 mt-10 mb-4'>
 					<header className='flex flex-col'>
-						{<PersonalInfoView personalInfo={personalInfo} />}
+						{<PersonalInfoView showEdit={EDIT_MODAL_ACTION_TYPE.hide} personalInfo={personalInfo} />}
 					</header>
 					<Box className='flex flex-col text-center justify-center'>
 						<div className='flex flex-col'>
@@ -37,7 +38,9 @@ export const ViewResume = ({ contentRef }: { contentRef: any }) => {
 									<h1>Work Experience</h1>
 								</div>
 								{employmentInfo.map((employmentInfo) => (
-									<EmploymentInfoView employmentInfo={employmentInfo} />
+									<EmploymentInfoView
+										showEdit={EDIT_MODAL_ACTION_TYPE.hide}
+										employmentInfo={employmentInfo} />
 								))}
 							</div>
 							<div className='m-2 p-2 flex flex-col text-start'>
@@ -49,7 +52,9 @@ export const ViewResume = ({ contentRef }: { contentRef: any }) => {
 									<h1>Projects</h1>
 								</div>
 								{projectInfo.map((info) => (
-									<ProjectInfoView projectInfo={info} />
+									<ProjectInfoView
+										showEdit={EDIT_MODAL_ACTION_TYPE.hide}
+										projectInfo={info} />
 								))}
 							</div>
 							<div className=' m-2 p-2 flex flex-col text-start'>
@@ -61,7 +66,9 @@ export const ViewResume = ({ contentRef }: { contentRef: any }) => {
 									<h1>Education</h1>
 								</div>
 								{educationInfo.map((info) => (
-									<EducationInfoView educationalInfo={info} />
+									<EducationInfoView
+										showEdit={EDIT_MODAL_ACTION_TYPE.hide}
+										educationalInfo={info} />
 								))}
 							</div>
 							<div className='m-2 p-2 flex flex-col text-start'>
@@ -73,7 +80,9 @@ export const ViewResume = ({ contentRef }: { contentRef: any }) => {
 									<h1>Skills</h1>
 								</div>
 								{skillInfo.map((info) => (
-									<SkillInfoView skillInfo={info} />
+									<SkillInfoView
+										showEdit={EDIT_MODAL_ACTION_TYPE.hide}
+										skillInfo={info} />
 								))}
 							</div>
 						</div>

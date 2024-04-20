@@ -8,8 +8,8 @@ import { ACTION_TYPE } from "../../utils/constants";
 import { useState } from "react";
 import { getTotalExperienceInMonths } from "../../utils/common";
 
-export const SkillInfoView = ({ skillInfo }: { skillInfo: ISkill }) => {
-	const { skill, softwareVersion, lastUsed, usedFrom, usedTill } = skillInfo;
+export const SkillInfoView = ({ skillInfo, showEdit }: { skillInfo: ISkill; showEdit: string }) => {
+	const { skill, softwareVersion, lastUsed, usedFrom } = skillInfo;
 	const [skillModal, setOpenSkillModal] = useState(false);
 
 	const lastUsedYYMMDD = new Date(lastUsed);
@@ -39,7 +39,7 @@ export const SkillInfoView = ({ skillInfo }: { skillInfo: ISkill }) => {
 								{Math.floor(getTotalExpMonths % 12)} months
 							</h1>
 						</div>
-						<div className='experience'>
+						{showEdit === "VISIBLE" && <div className='experience'>
 							<Button
 								startIcon={<EditIcon />}
 								color='success'
@@ -57,7 +57,7 @@ export const SkillInfoView = ({ skillInfo }: { skillInfo: ISkill }) => {
 									setOpenSkillModal={setOpenSkillModal}
 								/>
 							</Modal>
-						</div>
+						</div>}
 					</div>
 				</div>
 			</Box>

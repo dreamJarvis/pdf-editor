@@ -59,6 +59,8 @@ export const NOTICE_PERIOD = [
 
 export const ACTION_TYPE = { add: "ADD", edit: "EDIT", delete: "DELETE" };
 
+export const EDIT_MODAL_ACTION_TYPE = { visible: "VISIBLE", hide: "HIDE" };
+
 export const html2pdfOptions = {
 	filename: "resume.pdf",
 	margin: 1,

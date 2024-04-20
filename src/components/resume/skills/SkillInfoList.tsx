@@ -3,6 +3,7 @@
 import { Box } from "@mui/material";
 import { ISkill } from "../../../services/types";
 import { SkillInfoView } from "./SkillInfoView";
+import { EDIT_MODAL_ACTION_TYPE } from "../../utils/constants";
 
 export const SkillInfoList = ({ skillList }: { skillList: Array<ISkill> }) => {
 	return (
@@ -18,7 +19,9 @@ export const SkillInfoList = ({ skillList }: { skillList: Array<ISkill> }) => {
 
 				<div className='w-5/6'>
 					{skillList.map((info, index) => (
-						<SkillInfoView key={info?.id + index} skillInfo={info} />
+						<SkillInfoView
+							showEdit={EDIT_MODAL_ACTION_TYPE.visible}
+							key={info?.id + index} skillInfo={info} />
 					))}
 				</div>
 			</Box>

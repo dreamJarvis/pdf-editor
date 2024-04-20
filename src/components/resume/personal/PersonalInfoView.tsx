@@ -9,8 +9,10 @@ import { totalWorkingExperience } from "../../utils/common";
 
 export const PersonalInfoView = ({
 	personalInfo,
+	showEdit
 }: {
 	personalInfo: IPersonalInfo;
+	showEdit: string;
 }) => {
 	const [openPersonalInfoModal, setOpenPersonalInfoModal] = useState(false);
 
@@ -45,7 +47,7 @@ export const PersonalInfoView = ({
 									{firstName.toUpperCase()} {lastName.toUpperCase()}
 								</h1>
 							</div>
-							<div>
+							{showEdit === 'VISIBLE' && <div>
 								<Button
 									startIcon={<EditIcon />}
 									color='success'
@@ -60,7 +62,7 @@ export const PersonalInfoView = ({
 										setOpenPersonalInfoModal={setOpenPersonalInfoModal}
 									/>
 								</Modal>
-							</div>
+							</div>}
 						</div>
 						<div className='w-[90%] mb-4 mt-2'>
 							<small>{about}</small>
