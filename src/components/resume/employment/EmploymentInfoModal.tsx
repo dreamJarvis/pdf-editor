@@ -22,7 +22,7 @@ import {
 	getTodaysDateISOFormat,
 	getTotalExperienceInMonths,
 } from "../../utils/common";
-import { employmentInfoReducer } from "../store/employmentStore";
+import { employmentInfoReducer } from "../store/reducers/employmentStore";
 import { NOTICE_PERIOD } from "../../utils/constants";
 import { EMPLOYMENT_INFO_ACTIONS } from "../store/resumeReducerActions";
 

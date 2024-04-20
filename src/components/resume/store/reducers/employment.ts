@@ -1,7 +1,7 @@
 /** @format */
 
-import { IEmploymentInfo } from "../../../services/types";
-import { EMPLOYMENT_INFO_ACTIONS } from "./resumeReducerActions";
+import { IEmploymentInfo } from "../../../../services/types";
+import { EMPLOYMENT_INFO_ACTIONS } from "../resumeReducerActions";
 
 export const employmentInfoReducer = (
 	state: IEmploymentInfo,

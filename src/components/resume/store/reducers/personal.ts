@@ -1,7 +1,7 @@
 /** @format */
 
-import { IPersonalInfo } from "../../../services/types";
-import { PERSONAL_INFO_ACTIONS } from "./resumeReducerActions";
+import { IPersonalInfo } from "../../../../services/types";
+import { PERSONAL_INFO_ACTIONS } from "../resumeReducerActions";
 
 export const personalInfoReducer = (
 	state: IPersonalInfo,

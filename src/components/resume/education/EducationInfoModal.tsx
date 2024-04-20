@@ -18,7 +18,7 @@ import {
 	updateEducationDate,
 } from "../../../services/resumeReducers";
 import { getInitializedEducationData } from "../../utils/common";
-import { educationInfoReducer } from "../store/educationStore";
+import { educationInfoReducer } from "../store/reducers/education";
 import { EDUCATION_INFO_ACTIONS } from "../store/resumeReducerActions";
 import { EDUCATION_LEVEL, GRADING_SYSTEM } from "../../utils/constants";
 
