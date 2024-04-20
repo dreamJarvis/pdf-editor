@@ -27,29 +27,29 @@ const appRouter = createBrowserRouter([
 		errorElement: <PageNotFound />,
 		children: [
 			{
-				path: "pdf-editor/",
+				path: "resume-editor/",
 				element: <PersonalInfo />,
 			},
 			{
-				path: "pdf-editor/educational",
+				path: "resume-editor/educational",
 				element: <EducationalInfo />,
 			},
 			{
-				path: "pdf-editor/employment",
+				path: "resume-editor/employment",
 				element: <EmploymentInfo />,
 			},
 			{
-				path: "pdf-editor/projects",
+				path: "resume-editor/projects",
 				element: <ProjectInfo />,
 			},
 			{
-				path: "pdf-editor/skills",
+				path: "resume-editor/skills",
 				element: <SkillInfo />,
 			},
 			{
-				path: "pdf-editor/convert_pdf",
-				element: <ConvertToPDF />
-			}
+				path: "resume-editor/convert_pdf",
+				element: <ConvertToPDF />,
+			},
 		],
 	},
 ]);
