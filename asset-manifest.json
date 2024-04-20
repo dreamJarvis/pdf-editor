@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/pdf-editor/static/css/main.715bba67.css",
-    "main.js": "/pdf-editor/static/js/main.c411dc65.js",
+    "main.css": "/pdf-editor/static/css/main.05e7d697.css",
+    "main.js": "/pdf-editor/static/js/main.9c54591e.js",
     "static/js/213.0c3b0f99.chunk.js": "/pdf-editor/static/js/213.0c3b0f99.chunk.js",
     "static/js/455.7b679ab8.chunk.js": "/pdf-editor/static/js/455.7b679ab8.chunk.js",
     "index.html": "/pdf-editor/index.html",
-    "main.715bba67.css.map": "/pdf-editor/static/css/main.715bba67.css.map",
-    "main.c411dc65.js.map": "/pdf-editor/static/js/main.c411dc65.js.map",
+    "main.05e7d697.css.map": "/pdf-editor/static/css/main.05e7d697.css.map",
+    "main.9c54591e.js.map": "/pdf-editor/static/js/main.9c54591e.js.map",
     "213.0c3b0f99.chunk.js.map": "/pdf-editor/static/js/213.0c3b0f99.chunk.js.map",
     "455.7b679ab8.chunk.js.map": "/pdf-editor/static/js/455.7b679ab8.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.715bba67.css",
-    "static/js/main.c411dc65.js"
+    "static/css/main.05e7d697.css",
+    "static/js/main.9c54591e.js"
   ]
 }
