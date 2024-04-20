@@ -1,8 +1,7 @@
 /** @format */
 
-import { Box, Button, Modal } from "@mui/material";
+import { Box } from "@mui/material";
 import { ISkill } from "../../../services/types";
-import EditIcon from "@mui/icons-material/Edit";
 import { SkillInfoModal } from "./SkillInfoModal";
 import { ACTION_TYPE, EDIT_MODAL_ACTION_TYPE } from "../../utils/constants";
 import { useState } from "react";

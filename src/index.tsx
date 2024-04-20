@@ -6,7 +6,6 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { PersonalInfo } from "./components/resume/personal/PersonalInfo";
 import { EducationalInfo } from "./components/resume/education/EducationalInfo";
 import { EmploymentInfo } from "./components/resume/employment/EmploymentInfo";
-import { ViewResume } from "./components/resume/view/ViewResume";
 import { PageNotFound } from "./Errors/PageNotFound";
 import { Provider } from "react-redux";
 import { store } from "./store";

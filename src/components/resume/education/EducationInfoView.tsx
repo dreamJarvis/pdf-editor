@@ -1,8 +1,7 @@
 /** @format */
-import React, { useState } from "react";
+import { useState } from "react";
 import { IEducationInfo } from "../../../services/types";
-import { Box, Button, Modal } from "@mui/material";
-import EditIcon from "@mui/icons-material/Edit";
+import { Box } from "@mui/material";
 import { EducationInfoModal } from "./EducationInfoModal";
 import { getInitializedEducationData } from "../../utils/common";
 import { ACTION_TYPE, EDIT_MODAL_ACTION_TYPE } from "../../utils/constants";
