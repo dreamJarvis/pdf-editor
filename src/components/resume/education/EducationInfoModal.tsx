@@ -15,7 +15,7 @@ import { useDispatch } from "react-redux";
 import { IEducationInfo } from "../../../services/types";
 import {
 	addNewEducationData,
-	updateEducationDate,
+	updateEducationData,
 } from "../../../services/resumeReducers";
 import { getInitializedEducationData } from "../../utils/common";
 import { educationInfoReducer } from "../store/reducers/education";
@@ -38,7 +38,7 @@ export const EducationInfoModal = ({
 	const dispatch = useDispatch();
 
 	const addEducationInfo = () => {
-		if (action === "EDIT") dispatch(updateEducationDate(educationData));
+		if (action === "EDIT") dispatch(updateEducationData(educationData));
 		else if (action === "ADD") dispatch(addNewEducationData(educationData));
 		setOpenEducationModal(false);
 	};
