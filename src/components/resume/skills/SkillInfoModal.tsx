@@ -10,7 +10,7 @@ import {
 	updateSkillData,
 } from "../../../services/resumeReducers";
 import { getInitializedSkillInfo } from "../../utils/common";
-import { skillInfoReducer } from "../store/reducers/skillStore";
+import { skillInfoReducer } from "../store/reducers/skill";
 import { SKILL_INFO_ACTIONS } from "../store/resumeReducerActions";
 
 export const SkillInfoModal = ({

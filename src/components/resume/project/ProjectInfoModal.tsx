@@ -21,7 +21,7 @@ import {
 	getInitializedProjectInfo,
 	tagEmploymentEducation,
 } from "../../utils/common";
-import { projectInfoReducer } from "../store/reducers/projectStore";
+import { projectInfoReducer } from "../store/reducers/project";
 import { PROJECT_INFO_ACTIONS } from "../store/resumeReducerActions";
 
 export const ProjectInfoModal = ({

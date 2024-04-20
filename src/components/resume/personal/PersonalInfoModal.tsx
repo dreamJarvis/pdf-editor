@@ -7,7 +7,7 @@ import { addPersonalData } from "../../../services/resumeReducers";
 import { useReducer } from "react";
 import { getInitializedPersonalData } from "../../utils/common";
 import { PERSONAL_INFO_ACTIONS } from "../store/resumeReducerActions";
-import { personalInfoReducer } from "../store/reducers/personalStore";
+import { personalInfoReducer } from "../store/reducers/personal";
 import { NOTICE_PERIOD } from "../../utils/constants";
 
 export const PersonalInfoModal = ({
